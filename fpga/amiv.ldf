@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="amiv" device="LCMXO2-7000HC-6TG144I" default_implementation="amiv">
+    <Options/>
+    <Implementation title="amiv" dir="amiv" description="amiv" synthesis="lse" default_strategy="Strategy1">
+        <Options def_top="AMIV_TOP"/>
+        <Source name="amiv_top.v" type="Verilog" type_short="Verilog">
+            <Options top_module="AMIV_TOP"/>
+        </Source>
+        <Source name="amiv_pll.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="amiv.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+        <Source name="amiv/amiv.xcf" type="Programming Project File" type_short="Programming">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="amiv1.sty"/>
+</BaliProject>
