@@ -1,0 +1,1 @@
+TMDS pair should be routed as 100 Ohms (impedance) to ground !

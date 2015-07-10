@@ -50,7 +50,7 @@ int main(void)
 	for(i = 0; i < 1000000; i++);
 
 	AMIV_ADV7511_Init();
-	AMIV_AD9984A_Init(ad9984a_mode_i576);
+	AMIV_AD9984A_Init(ad9984a_mode_amiga);
 	AMIV_ADV7511_PowerUp();
 
     while(1)

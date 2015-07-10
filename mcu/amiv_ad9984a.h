@@ -15,11 +15,7 @@
 
 typedef enum
 {
-	ad9984a_mode_p720,
-	ad9984a_mode_svga,
-	ad9984a_mode_i480,
-	ad9984a_mode_p480,
-	ad9984a_mode_i576
+	ad9984a_mode_amiga
 } ad9984a_mode;
 
 void AMIV_AD9984A_Init(ad9984a_mode mode);

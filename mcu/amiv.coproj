@@ -107,9 +107,9 @@
     <File name="amiv_uart.h" path="amiv_uart.h" type="1"/>
     <File name="amiv_i2c.h" path="amiv_i2c.h" type="1"/>
     <File name="cmsis_boot/stm32f0xx.h" path="cmsis_boot/stm32f0xx.h" type="1"/>
+    <File name="amiv_config.c" path="amiv_config.c" type="1"/>
     <File name="amiv_cmd.h" path="amiv_cmd.h" type="1"/>
     <File name="stm32_lib/inc/stm32f0xx_usart.h" path="stm32_lib/inc/stm32f0xx_usart.h" type="1"/>
-    <File name="amiv_config.c" path="amiv_config.c" type="1"/>
     <File name="amiv_irq.h" path="amiv_irq.h" type="1"/>
     <File name="amiv_main.c" path="amiv_main.c" type="1"/>
     <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>

@@ -19,9 +19,9 @@
 				<BScanLen>1</BScanLen>
 				<BScanVal>0</BScanVal>
 			</Bypass>
-			<File>C:/lscc/projects/AMIV_fpga_final_bug_correction - Copy/amiv/amiv_amiv.jed</File>
-			<FileTime>07/04/15 13:57:28</FileTime>
-			<JedecChecksum>0x4870</JedecChecksum>
+			<File>C:/GitHub/AMIV/fpga/amiv/amiv_amiv.jed</File>
+			<FileTime>07/07/15 18:59:02</FileTime>
+			<JedecChecksum>0x4923</JedecChecksum>
 			<Operation>FLASH Erase,Program,Verify</Operation>
 			<Option>
 				<SVFVendor>JTAG STANDARD</SVFVendor>

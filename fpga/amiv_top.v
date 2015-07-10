@@ -24,14 +24,14 @@ module AMIV_TOP( input wire ref_clock,
 				 input wire gpio_2,
 				 input wire gpio_3);
 
-parameter IN_FRAME_PER_SECOND = 50;
-parameter IN_HORIZONTAL_BLANKING = 90;
+parameter IN_FRAME_PER_SECOND = 50; /* number of frames used by interlaced detection */
+parameter IN_HORIZONTAL_BLANKING = 170;
 parameter IN_VERTICAL_BLANKING = 30;
 
 parameter IN_HORIZONTAL_BLANKING_OFFSET = 40;
 parameter IN_VERTICAL_BLANKING_OFFSET = 15;
 
-parameter OUT_HFP = 110;
+parameter OUT_HFP = 440; /* set to 110 for 720p @ 60Hz and to 440 for 720p @ 50Hz */;
 parameter OUT_HBP = 220;
 parameter OUT_HSW = 40;
 parameter OUT_VFP = 5;
@@ -44,25 +44,25 @@ parameter OUT_VERTICAL_BLANKING = OUT_VFP + OUT_VBP + OUT_VSW;
 parameter OUT_HORIZONTAL_PIXELS = OUT_WIDTH + OUT_HORIZONTAL_BLANKING;
 parameter OUT_VERTICAL_LINES = OUT_HEIGHT + OUT_VERTICAL_BLANKING;
 parameter OUT_WIDTH_OFFSET = 0;
-parameter OUT_HEIGHT_OFFSET = 78;
+parameter OUT_HEIGHT_OFFSET = 78; /* 720p got more lines than input format, in order to center picture, this is offset counted from the top of the screen */
 
-parameter SRAM_WIDTH = 620;
+parameter SRAM_WIDTH = 640;
 parameter SRAM_HEIGHT = 580;
 
 /* SRAM */
-reg reg_sram_in_wr_n;
+reg reg_sram_in_wr_n; /* goes low when a write should be performed */
 reg reg_sram_in_wr_n_next;
-reg reg_sram_oe_n;
+reg reg_sram_oe_n; /* not needed for the sram used actually */
 reg reg_sram_oe_n_next;
 reg [18:0] reg_sram_in_addr;
 reg [18:0] reg_sram_in_addr_next;
 reg [15:0] reg_sram_in_data;
 reg [15:0] reg_sram_in_data_next;
-reg [18:0] reg_sram_write_pixel_counter;
+reg [18:0] reg_sram_write_pixel_counter; /* number of pixels written */
 reg [18:0] reg_sram_write_pixel_counter_next;
 reg reg_sram_flag_write;
 reg reg_sram_flag_write_next;
-reg [18:0] reg_sram_read_pixel_counter;
+reg [18:0] reg_sram_read_pixel_counter; /* number of pixels read */
 reg [18:0] reg_sram_read_pixel_counter_next;
 reg reg_sram_out_busy_n;
 
@@ -73,9 +73,9 @@ reg reg_out_vs;
 reg reg_out_vs_next;
 reg reg_out_pclk;
 reg reg_out_pclk_next;
-reg reg_out_de;
+reg reg_out_de; /* not used since the internal de generator in 7511 is used instead */
 reg reg_out_de_next;
-reg reg_out_line_render_twice_flag;
+reg reg_out_line_render_twice_flag; /* this is used to know if a line has been rendered twice or not, not used in interlaced mode */
 reg reg_out_line_render_twice_flag_next;
 reg [23:0] reg_out_data;
 reg [23:0] reg_out_data_next;
@@ -91,15 +91,15 @@ reg [15:0] reg_in_hs_pixel_counter;
 reg [15:0] reg_in_hs_pixel_counter_next;
 reg [11:0] reg_in_line_counter;
 reg [11:0] reg_in_line_counter_next;
-reg [7:0] reg_in_horizontal_blanking;
-reg [7:0] reg_in_horizontal_blanking_next;
+reg [8:0] reg_in_horizontal_blanking;
+reg [8:0] reg_in_horizontal_blanking_next;
 reg [7:0] reg_in_vertical_blanking;
 reg [7:0] reg_in_vertical_blanking_next;
-reg reg_interlaced_active;
+reg reg_interlaced_active; /* this is set if the mode is interlaced */
 reg reg_interlaced_active_next;
-reg reg_interlaced_detected;
+reg reg_interlaced_detected; /* this will be set when odd/even field has switched from high to low during number of frames set in reg_interlaced_active_counter */
 reg reg_interlaced_detected_next;
-reg [7:0] reg_interlaced_active_counter;
+reg [7:0] reg_interlaced_active_counter; /* used to detect interlaced mode */
 reg [7:0] reg_interlaced_active_counter_next;
 
 /* MISC */
@@ -158,14 +158,9 @@ begin
 													(reg_in_line_counter - reg_in_vertical_blanking) * 2 * SRAM_WIDTH + SRAM_WIDTH;
 			end
 		end else begin
-			/* just use frame counter to decide the line in sram to write to */
-			//if(reg_frame_counter == 0) begin
-				reg_sram_write_pixel_counter_next = (reg_in_hs_pixel_counter - reg_in_horizontal_blanking) +
-													(reg_in_line_counter - reg_in_vertical_blanking) * SRAM_WIDTH;
-			/*end else begin
-				reg_sram_write_pixel_counter_next = (reg_in_hs_pixel_counter - reg_in_horizontal_blanking) +
-													(reg_in_line_counter - reg_in_vertical_blanking) * 2 * SRAM_WIDTH + SRAM_WIDTH;
-			end*/
+			/* write pixel sequentially, the reading procedure will output every row 2 times */
+			reg_sram_write_pixel_counter_next = (reg_in_hs_pixel_counter - reg_in_horizontal_blanking) +
+												(reg_in_line_counter - reg_in_vertical_blanking) * SRAM_WIDTH;
 		end
 	end
 
@@ -331,7 +326,7 @@ begin
 			/* time to increase pixel counter out, this should only happen mclk/2 */
 			reg_out_hs_pixel_counter_next = reg_out_hs_pixel_counter + 1;
 			
-			/* dummy section start */
+			/* dummy section start (in order to configure the pins they must be "used") */
 			if(reg_in_data_saved[24] == 1)
 				reg_sram_out_busy_n = 1;
 			else if(reg_in_data_saved[23] == 1)
@@ -371,6 +366,7 @@ begin
 			/* put the data that should be written on sram bus (round up if necessary) */
 			reg_sram_in_data_next[15:11] = reg_in_data_saved[29:25];
 			
+			/* round up ? */
 			/*if(reg_sram_in_data_next[15:11] != 5'b11111) begin
 				if(reg_in_data_saved[24:20] >= 5'b10000) begin
 					reg_sram_in_data_next[15:11] = reg_sram_in_data_next[15:11] + 1;
