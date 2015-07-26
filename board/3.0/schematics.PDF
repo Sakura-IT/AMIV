@@ -1,7 +1,7 @@
 %PDF-1.3
 1 0 obj
 <<
-/CreationDate(D:20150726143818)
+/CreationDate(D:20150726231426)
 /Title()
 /Producer(Synactis PDF In-The-Box version 3.12)
 >>
@@ -5821,6 +5821,12 @@ S
 0 0 0 RG
 []0 d
 1.134 w
+2167.087 270.142 m
+2167.087 280.913 l
+S
+0 0 0 RG
+[]0 d
+1.134 w
 2167.087 316.913 m
 2167.087 327.685 l
 S
@@ -6537,12 +6543,6 @@ S
 1.134 w
 954.142 1004.315 m
 961.512 1004.315 l
-S
-0 0 0 RG
-[]0 d
-1.134 w
-2167.087 280.913 m
-2167.087 270.142 l
 S
 0 0 0 RG
 []0 d
@@ -8149,7 +8149,7 @@ BT
 /F0 5 Tf
 0 0 0 rg
 165.26 754.025 Td
-(10uF) Tj
+(47nF) Tj
 ET
 0 0 0 RG
 []0 d
@@ -8191,7 +8191,7 @@ BT
 /F0 5 Tf
 0 0 0 rg
 165.26 696.482 Td
-(10uF) Tj
+(47nF) Tj
 ET
 0 0 0 RG
 []0 d
@@ -8233,7 +8233,7 @@ BT
 /F0 5 Tf
 0 0 0 rg
 165.26 638.938 Td
-(10uF) Tj
+(47nF) Tj
 ET
 0 0 0 RG
 []0 d
@@ -28643,7 +28643,7 @@ trailer
 /Size 11
 /Root 10 0 R
 /Info 1 0 R
-/ID[(422116099eaaDuniinF)(422116099eaaDuniinF)]
+/ID[(422119684eaaDuniinF)(422119684eaaDuniinF)]
 >>
 startxref
 383435
