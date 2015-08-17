@@ -52,7 +52,7 @@ void AMIV_ADV7511_PowerUp()
 	AMIV_I2C_WR_Reg(0x35, 0x40);
 	AMIV_I2C_WR_Reg(0x36, 0xD9);
 	AMIV_I2C_WR_Reg(0x37, 0x0A); /* output width */
-	AMIV_I2C_WR_Reg(0x38, 0x14); /* output width */
+	AMIV_I2C_WR_Reg(0x38, 0x00); /* output width */
 	AMIV_I2C_WR_Reg(0x39, 0x2D);
     AMIV_I2C_WR_Reg(0x3A, 0x00);
 	AMIV_I2C_WR_Reg(0x3B, 0x40);
