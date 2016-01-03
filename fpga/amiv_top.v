@@ -175,6 +175,8 @@ begin
 			reg_sram_write_pixel_counter_next = (reg_in_hs_pixel_counter - reg_in_horizontal_blanking) +
 												(reg_in_line_counter - reg_in_vertical_blanking) * SRAM_WIDTH;
 		end
+	end else begin
+		reg_sram_write_pixel_counter_next = 0;
 	end
 
 	/* store the data here, so that it can be written inside output statemachine */
@@ -409,6 +411,8 @@ begin
 				
 				/* set the read address */
 				reg_sram_in_addr_next = reg_sram_read_pixel_counter;
+			end else begin
+				reg_sram_in_addr_next = 0;
 			end
 		end
 	default:
