@@ -36,7 +36,7 @@ char *AMIV_UTIL_itoa(int i)
   return p;
 }
 
-char * AMIV_UTIL_itoahex(int i)
+char * AMIV_UTIL_itoahex(int i, int chars)
 {
     unsigned char n;
     static char buf[INT_DIGITS + 2];
@@ -45,7 +45,7 @@ char * AMIV_UTIL_itoahex(int i)
     s += 4;
     *s = '\0';
 
-    for (n = 2; n != 0; --n) {
+    for (n = chars; n != 0; --n) {
         *--s = "0123456789ABCDEF"[i & 0x0F];
         i >>= 4;
     }

@@ -30,7 +30,7 @@ void EXTI4_15_IRQHandler(void)
 			;
 		}
 		Val = AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_IRQ);
-		Byte_p = AMIV_UTIL_itoahex(Val);
+		Byte_p = AMIV_UTIL_itoahex(Val, 2);
 		AMIV_UART_SendString("IRQ status: ");
 		AMIV_UART_SendString(Byte_p);
 		AMIV_UART_SendString("\r\n");

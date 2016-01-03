@@ -1,25 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="arm-none-eabi-gcc -mcpu=cortex-m0 -mthumb -g -nostartfiles -Map=amiv.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\amiv -TC:\CooCox\CoIDE\configuration\ProgramData\amiv/arm-gcc-link.ld -g">
-      <target file="amiv.elf" lastModified="14e779647e6">
-         <source file="..\obj\amiv_uart.o" lastModified="14e6966ea06"/>
-         <source file="..\obj\amiv_main.o" lastModified="14e699bbddf"/>
-         <source file="..\obj\stm32f0xx_rcc.o" lastModified="14e6966eafc"/>
-         <source file="..\obj\amiv_cmd.o" lastModified="14e6966eb6d"/>
-         <source file="..\obj\startup_stm32f0xx.o" lastModified="14e6966eb87"/>
-         <source file="..\obj\stm32f0xx_i2c.o" lastModified="14e6966ec09"/>
-         <source file="..\obj\system_stm32f0xx_temp.o" lastModified="14e6966ec6e"/>
-         <source file="..\obj\amiv_irq.o" lastModified="14e699bbe4e"/>
-         <source file="..\obj\stm32f0xx_gpio.o" lastModified="14e6966ed54"/>
-         <source file="..\obj\amiv_ad9984a.o" lastModified="14e699bbeb2"/>
-         <source file="..\obj\amiv_adv7511.o" lastModified="14e7796441c"/>
-         <source file="..\obj\stm32f0xx_usart.o" lastModified="14e6966eeaa"/>
-         <source file="..\obj\amiv_i2c.o" lastModified="14e6966ef0e"/>
-         <source file="..\obj\stm32f0xx_exti.o" lastModified="14e6966ef6b"/>
-         <source file="..\obj\stm32f0xx_syscfg.o" lastModified="14e6966efc9"/>
-         <source file="..\obj\amiv_config.o" lastModified="14e6966f029"/>
-         <source file="..\obj\amiv_util.o" lastModified="14e6966f098"/>
-         <source file="..\obj\stm32f0xx_misc.o" lastModified="14e6966f0f6"/>
+      <target file="amiv.elf" lastModified="15207f5d529">
+         <source file="..\obj\amiv_uart.o" lastModified="15207ab4bd1"/>
+         <source file="..\obj\amiv_main.o" lastModified="14fef1394fc"/>
+         <source file="..\obj\stm32f0xx_rcc.o" lastModified="14fef139580"/>
+         <source file="..\obj\amiv_cmd.o" lastModified="15207f44f12"/>
+         <source file="..\obj\startup_stm32f0xx.o" lastModified="14fef139608"/>
+         <source file="..\obj\amiv_flash.o" lastModified="15207f5d32e"/>
+         <source file="..\obj\stm32f0xx_i2c.o" lastModified="14fef139689"/>
+         <source file="..\obj\system_stm32f0xx_temp.o" lastModified="14fef1396ed"/>
+         <source file="..\obj\amiv_irq.o" lastModified="15207ab4cbe"/>
+         <source file="..\obj\stm32f0xx_gpio.o" lastModified="14fef1397da"/>
+         <source file="..\obj\amiv_ad9984a.o" lastModified="14fef13983d"/>
+         <source file="..\obj\amiv_adv7511.o" lastModified="14fef13989e"/>
+         <source file="..\obj\stm32f0xx_usart.o" lastModified="14fef13991f"/>
+         <source file="..\obj\amiv_i2c.o" lastModified="14fef13997f"/>
+         <source file="..\obj\stm32f0xx_flash.o" lastModified="152074a37b2"/>
+         <source file="..\obj\stm32f0xx_exti.o" lastModified="14fef1399dc"/>
+         <source file="..\obj\stm32f0xx_syscfg.o" lastModified="14fef139a39"/>
+         <source file="..\obj\amiv_util.o" lastModified="15207ab4d38"/>
+         <source file="..\obj\amiv_config.o" lastModified="14fef139a98"/>
+         <source file="..\obj\stm32f0xx_misc.o" lastModified="14fef139b5e"/>
       </target>
    </processor>
 </history>

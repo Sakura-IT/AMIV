@@ -28,7 +28,7 @@
         <Option name="Library" value="Not use C Library"/>
         <LinkedLibraries/>
         <MemoryAreas debugInFlashNotRAM="1">
-          <Memory name="IROM1" type="ReadOnly" size="0x00008000" startValue="0x08000000"/>
+          <Memory name="IROM1" type="ReadOnly" size="0x00007000" startValue="0x08000000"/>
           <Memory name="IRAM1" type="ReadWrite" size="0x00001000" startValue="0x20000000"/>
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="" startValue=""/>
@@ -75,56 +75,61 @@
     <Component id="421" name="MISC" path="" type="2"/>
     <Component id="422" name="GPIO" path="" type="2"/>
     <Component id="429" name="EXTI" path="" type="2"/>
+    <Component id="430" name="FLASH" path="" type="2"/>
     <Component id="431" name="I2C" path="" type="2"/>
     <Component id="435" name="SYSCFG" path="" type="2"/>
     <Component id="437" name="USART" path="" type="2"/>
   </Components>
   <Files>
     <File name="amiv_ad9984a.c" path="amiv_ad9984a.c" type="1"/>
-    <File name="stm32_lib/src/stm32f0xx_i2c.c" path="stm32_lib/src/stm32f0xx_i2c.c" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_exti.c" path="stm32_lib/src/stm32f0xx_exti.c" type="1"/>
-    <File name="stm32_lib/src/stm32f0xx_usart.c" path="stm32_lib/src/stm32f0xx_usart.c" type="1"/>
     <File name="stm32_lib/inc/stm32f0xx_i2c.h" path="stm32_lib/inc/stm32f0xx_i2c.h" type="1"/>
-    <File name="cmsis_boot/stm32f0xx_conf.h" path="cmsis_boot/stm32f0xx_conf.h" type="1"/>
     <File name="cmsis_core/core_cmInstr.h" path="cmsis_core/core_cmInstr.h" type="1"/>
-    <File name="amiv_util.c" path="amiv_util.c" type="1"/>
-    <File name="cmsis_boot/startup/startup_stm32f0xx.s" path="cmsis_boot/startup/startup_stm32f0xx.s" type="1"/>
-    <File name="amiv_adv7511.c" path="amiv_adv7511.c" type="1"/>
-    <File name="amiv_irq.c" path="amiv_irq.c" type="1"/>
+    <File name="stm32_lib/src/stm32f0xx_flash.c" path="stm32_lib/src/stm32f0xx_flash.c" type="1"/>
     <File name="cmsis_boot/system_stm32f0xx_temp.c" path="cmsis_boot/system_stm32f0xx_temp.c" type="1"/>
     <File name="amiv_config.h" path="amiv_config.h" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
-    <File name="cmsis_core/core_cmFunc.h" path="cmsis_core/core_cmFunc.h" type="1"/>
-    <File name="stm32_lib/inc/stm32f0xx_syscfg.h" path="stm32_lib/inc/stm32f0xx_syscfg.h" type="1"/>
-    <File name="stm32_lib" path="" type="2"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
-    <File name="stm32_lib/src/stm32f0xx_syscfg.c" path="stm32_lib/src/stm32f0xx_syscfg.c" type="1"/>
-    <File name="stm32_lib/inc/stm32f0xx_exti.h" path="stm32_lib/inc/stm32f0xx_exti.h" type="1"/>
     <File name="cmsis_core" path="" type="2"/>
     <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="amiv_main.h" path="amiv_main.h" type="1"/>
+    <File name="cmsis_boot/stm32f0xx.h" path="cmsis_boot/stm32f0xx.h" type="1"/>
+    <File name="amiv_config.c" path="amiv_config.c" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_usart.h" path="stm32_lib/inc/stm32f0xx_usart.h" type="1"/>
+    <File name="amiv_irq.h" path="amiv_irq.h" type="1"/>
+    <File name="amiv_cmd.h" path="amiv_cmd.h" type="1"/>
+    <File name="amiv_main.c" path="amiv_main.c" type="1"/>
+    <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
+    <File name="amiv_i2c.c" path="amiv_i2c.c" type="1"/>
+    <File name="amiv_flash.h" path="amiv_flash.h" type="1"/>
+    <File name="amiv_uart.c" path="amiv_uart.c" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_misc.h" path="stm32_lib/inc/stm32f0xx_misc.h" type="1"/>
+    <File name="amiv_adv7511.h" path="amiv_adv7511.h" type="1"/>
+    <File name="stm32_lib/src/stm32f0xx_rcc.c" path="stm32_lib/src/stm32f0xx_rcc.c" type="1"/>
+    <File name="stm32_lib/src/stm32f0xx_i2c.c" path="stm32_lib/src/stm32f0xx_i2c.c" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_flash.h" path="stm32_lib/inc/stm32f0xx_flash.h" type="1"/>
+    <File name="amiv_flash.c" path="amiv_flash.c" type="1"/>
+    <File name="stm32_lib/src/stm32f0xx_usart.c" path="stm32_lib/src/stm32f0xx_usart.c" type="1"/>
+    <File name="cmsis_boot/stm32f0xx_conf.h" path="cmsis_boot/stm32f0xx_conf.h" type="1"/>
+    <File name="cmsis_boot/startup/startup_stm32f0xx.s" path="cmsis_boot/startup/startup_stm32f0xx.s" type="1"/>
+    <File name="amiv_util.c" path="amiv_util.c" type="1"/>
+    <File name="amiv_adv7511.c" path="amiv_adv7511.c" type="1"/>
+    <File name="amiv_irq.c" path="amiv_irq.c" type="1"/>
+    <File name="cmsis_core/core_cmFunc.h" path="cmsis_core/core_cmFunc.h" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_syscfg.h" path="stm32_lib/inc/stm32f0xx_syscfg.h" type="1"/>
+    <File name="stm32_lib" path="" type="2"/>
+    <File name="stm32_lib/src/stm32f0xx_syscfg.c" path="stm32_lib/src/stm32f0xx_syscfg.c" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_exti.h" path="stm32_lib/inc/stm32f0xx_exti.h" type="1"/>
     <File name="stm32_lib/inc" path="" type="2"/>
     <File name="amiv_uart.h" path="amiv_uart.h" type="1"/>
     <File name="amiv_i2c.h" path="amiv_i2c.h" type="1"/>
-    <File name="cmsis_boot/stm32f0xx.h" path="cmsis_boot/stm32f0xx.h" type="1"/>
-    <File name="amiv_config.c" path="amiv_config.c" type="1"/>
-    <File name="amiv_cmd.h" path="amiv_cmd.h" type="1"/>
-    <File name="stm32_lib/inc/stm32f0xx_usart.h" path="stm32_lib/inc/stm32f0xx_usart.h" type="1"/>
-    <File name="amiv_irq.h" path="amiv_irq.h" type="1"/>
-    <File name="amiv_main.c" path="amiv_main.c" type="1"/>
-    <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
     <File name="stm32_lib/inc/stm32f0xx_rcc.h" path="stm32_lib/inc/stm32f0xx_rcc.h" type="1"/>
-    <File name="amiv_i2c.c" path="amiv_i2c.c" type="1"/>
     <File name="amiv_util.h" path="amiv_util.h" type="1"/>
     <File name="amiv_ad9984a.h" path="amiv_ad9984a.h" type="1"/>
-    <File name="amiv_uart.c" path="amiv_uart.c" type="1"/>
     <File name="cmsis_boot/system_stm32f0xx.h" path="cmsis_boot/system_stm32f0xx.h" type="1"/>
     <File name="amiv_cmd.c" path="amiv_cmd.c" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_gpio.c" path="stm32_lib/src/stm32f0xx_gpio.c" type="1"/>
-    <File name="stm32_lib/inc/stm32f0xx_misc.h" path="stm32_lib/inc/stm32f0xx_misc.h" type="1"/>
-    <File name="amiv_adv7511.h" path="amiv_adv7511.h" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_misc.c" path="stm32_lib/src/stm32f0xx_misc.c" type="1"/>
     <File name="stm32_lib/src" path="" type="2"/>
-    <File name="stm32_lib/src/stm32f0xx_rcc.c" path="stm32_lib/src/stm32f0xx_rcc.c" type="1"/>
   </Files>
 </Project>
