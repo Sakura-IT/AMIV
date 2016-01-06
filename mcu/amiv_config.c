@@ -4,7 +4,6 @@
 
 void AMIV_CONFIG_Init()
 {
-	GPIO_InitTypeDef GPIO_InitStructure;
 }
 
 void AMIV_CONFIG_I2C()
@@ -39,7 +38,7 @@ void AMIV_CONFIG_GPIO()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;

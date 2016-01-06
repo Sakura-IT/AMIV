@@ -95,6 +95,7 @@ void AMIV_ADV7511_ReadEDID()
 	for(i = 0; i < 128; i++)
 	{
 		AMIV_ADV7511_EDID[i] = AMIV_I2C_RD_Reg(i);
+		for(i = 0; i < 10000;i++);
 	}
 }
 

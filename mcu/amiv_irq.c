@@ -25,10 +25,7 @@ void EXTI4_15_IRQHandler(void)
 		AMIV_UART_SendString("IRQ RECIVED LINE 5!\r\n");
 
 		AMIV_I2C_ChangeSlave(AMIV_I2C_SLAVE_ADV7511);
-		for(i = 0; i < 10000;i++)
-		{
-			;
-		}
+		for(i = 0; i < 10000;i++);
 		Val = AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_IRQ);
 		Byte_p = AMIV_UTIL_itoahex(Val, 2);
 		AMIV_UART_SendString("IRQ status: ");
@@ -46,7 +43,7 @@ void EXTI4_15_IRQHandler(void)
 			}
 			else
 			{
-				AMIV_UART_SendString("Cable removed\r\n");
+				AMIV_UART_SendString("Cable removed!\r\n");
 			}
 		}
 		else if(AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_STATUS) & 0xF0)
@@ -55,25 +52,7 @@ void EXTI4_15_IRQHandler(void)
 		}
 		else if(Val & 0x04)
 		{
-			char *Reg_p;
-			uint16_t i;
-			uint8_t *EDID_p;
-
-			AMIV_UART_SendString("Reading EDID:\r\n");
-			//AMIV_ADV7511_ReadEDID();
-
-			/*EDID_p = AMIV_ADV7511_GetEDIDPointer();
-
-			for(i = 0; i < 128; i++)
-			{
-				Reg_p = AMIV_UTIL_itoahex((int)*(EDID_p + i));
-				AMIV_UART_SendString(Reg_p);
-				AMIV_UART_SendString(" ");
-				if(!((i + 1) % 16))
-				{
-					AMIV_UART_SendString("\r\n");
-				}
-			}*/
+			AMIV_UART_SendString("EDID is available\r\n");
 		}
 
 		AMIV_I2C_WR_Reg(AMIV_ADV7511_REG_IRQ, Val);

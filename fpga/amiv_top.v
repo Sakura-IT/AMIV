@@ -383,9 +383,6 @@ begin
 			else if(in_oddeven == 1)
 				reg_sram_out_busy_n = 0;
 			
-			if(gpio_2 == 0) begin
-				reg_sram_out_busy_n = 1'b1;
-			end
 			/* dummy section end */
 				
 			/* put the data that should be written on sram bus */
@@ -471,11 +468,6 @@ end
 always @ (negedge gpio_0)
 begin
 	reg_in_horizontal_blanking <= reg_in_horizontal_blanking_next;
-end
-
-/* button 2 */
-always @ (negedge gpio_1)
-begin
 	reg_in_vertical_blanking <= reg_in_vertical_blanking_next;
 end
 
@@ -485,20 +477,17 @@ begin
 	reg_in_horizontal_blanking_next = reg_in_horizontal_blanking;
 	reg_in_vertical_blanking_next = reg_in_vertical_blanking;
 	
-	if(gpio_3 == 0) begin
+	if(gpio_1 == 0 && gpio_2 == 0 && gpio_3 == 0) begin
 		reg_in_horizontal_blanking_next = IN_HORIZONTAL_BLANKING;
-	end else if(reg_in_horizontal_blanking == (IN_HORIZONTAL_BLANKING - IN_HORIZONTAL_BLANKING_OFFSET)) begin
-		reg_in_horizontal_blanking_next = (IN_HORIZONTAL_BLANKING + IN_HORIZONTAL_BLANKING_OFFSET*2);
-	end else begin
-		reg_in_horizontal_blanking_next = reg_in_horizontal_blanking - 4'd10;
-	end
-	
-	if(gpio_3 == 0) begin
 		reg_in_vertical_blanking_next = IN_VERTICAL_BLANKING;
-	end else if(reg_in_vertical_blanking == (IN_VERTICAL_BLANKING - IN_VERTICAL_BLANKING_OFFSET)) begin
-		reg_in_vertical_blanking_next = (IN_VERTICAL_BLANKING + IN_VERTICAL_BLANKING_OFFSET*2);
-	end else begin
+	end else if(gpio_1 == 1 && gpio_2 == 0 && gpio_3 == 0) begin
+		reg_in_horizontal_blanking_next = reg_in_horizontal_blanking - 4'd10;
+	end else if(gpio_1 == 1 && gpio_2 == 1 && gpio_3 == 0) begin
+		reg_in_horizontal_blanking_next = reg_in_horizontal_blanking + 4'd10;
+	end else if(gpio_1 == 0 && gpio_2 == 1 && gpio_3 == 0) begin
 		reg_in_vertical_blanking_next = reg_in_vertical_blanking - 3'd5;
+	end else if(gpio_1 == 0 && gpio_2 == 1 && gpio_3 == 1) begin
+		reg_in_vertical_blanking_next = reg_in_vertical_blanking + 3'd5;
 	end
 end
 

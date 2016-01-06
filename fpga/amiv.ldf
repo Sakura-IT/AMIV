@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BaliProject version="3.2" title="amiv" device="LCMXO2-7000HC-6TG144I" default_implementation="amiv">
     <Options/>
-    <Implementation title="amiv" dir="amiv" description="amiv" synthesis="lse" default_strategy="Strategy1">
+    <Implementation title="amiv" dir="amiv" description="amiv" synthesis="lse" default_strategy="Area">
         <Options def_top="AMIV_TOP"/>
         <Source name="amiv_top.v" type="Verilog" type_short="Verilog">
             <Options top_module="AMIV_TOP"/>
