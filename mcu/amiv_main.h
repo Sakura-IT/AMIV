@@ -11,6 +11,8 @@
 #define true	1
 #define false	0
 
+#define DELAY	1000
+
 typedef unsigned char bool;
 
 #endif

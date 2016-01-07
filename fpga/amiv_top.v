@@ -114,6 +114,8 @@ reg reg_interlaced_detected_next;
 reg [2:0] reg_state;
 reg [2:0] state_next;
 reg reg_reset_screen_pos = 0;
+reg reg_output_active = 0;
+reg reg_output_active_next = 0;
 
 localparam [2:0] state_0 = 3'b000,
 				 state_1 = 3'b001,
@@ -253,26 +255,28 @@ end
  */
 always @ (posedge out_clk)
 begin
-	reg_state <= state_next;
-	reg_out_data <= reg_out_data_next;
-	reg_out_pclk <= reg_out_pclk_next;
-	reg_out_hs_pixel_counter <= reg_out_hs_pixel_counter_next;
-	reg_out_line_render_twice_flag <= reg_out_line_render_twice_flag_next;
-	reg_out_hs <= reg_out_hs_next;
-	reg_out_line_counter <= reg_out_line_counter_next;
-	reg_out_de <= reg_out_de_next;
-	reg_out_vs <= reg_out_vs_next;
-	reg_sram_read_pixel_counter <= reg_sram_read_pixel_counter_next;
-	reg_sram_in_addr <= reg_sram_in_addr_next;
-	reg_sram_in_data <= reg_sram_in_data_next;
-	reg_sram_oe_n <= reg_sram_oe_n_next;
-	reg_sram_in_wr_n <= reg_sram_in_wr_n_next;
-	
-	/* make sure that new pixel is written to sram only when it appropriate */
-	if(in_pclk == 1'b1 && reg_sram_flag_write == 0) begin
-		reg_sram_flag_write <= 1'b1;
-	end else begin
-		reg_sram_flag_write <= reg_sram_flag_write_next;
+	if(reg_output_active == 1) begin
+		reg_state <= state_next;
+		reg_out_data <= reg_out_data_next;
+		reg_out_pclk <= reg_out_pclk_next;
+		reg_out_hs_pixel_counter <= reg_out_hs_pixel_counter_next;
+		reg_out_line_render_twice_flag <= reg_out_line_render_twice_flag_next;
+		reg_out_hs <= reg_out_hs_next;
+		reg_out_line_counter <= reg_out_line_counter_next;
+		reg_out_de <= reg_out_de_next;
+		reg_out_vs <= reg_out_vs_next;
+		reg_sram_read_pixel_counter <= reg_sram_read_pixel_counter_next;
+		reg_sram_in_addr <= reg_sram_in_addr_next;
+		reg_sram_in_data <= reg_sram_in_data_next;
+		reg_sram_oe_n <= reg_sram_oe_n_next;
+		reg_sram_in_wr_n <= reg_sram_in_wr_n_next;
+		
+		/* make sure that new pixel is written to sram only when it appropriate */
+		if(in_pclk == 1'b1 && reg_sram_flag_write == 0) begin
+			reg_sram_flag_write <= 1'b1;
+		end else begin
+			reg_sram_flag_write <= reg_sram_flag_write_next;
+		end
 	end
 end
 
@@ -469,6 +473,7 @@ always @ (negedge gpio_0)
 begin
 	reg_in_horizontal_blanking <= reg_in_horizontal_blanking_next;
 	reg_in_vertical_blanking <= reg_in_vertical_blanking_next;
+	reg_output_active <= reg_output_active_next;
 end
 
 always @*
@@ -476,10 +481,12 @@ begin
 	/* default */
 	reg_in_horizontal_blanking_next = reg_in_horizontal_blanking;
 	reg_in_vertical_blanking_next = reg_in_vertical_blanking;
+	reg_output_active_next = reg_output_active;
 	
 	if(gpio_1 == 0 && gpio_2 == 0 && gpio_3 == 0) begin
 		reg_in_horizontal_blanking_next = IN_HORIZONTAL_BLANKING;
 		reg_in_vertical_blanking_next = IN_VERTICAL_BLANKING;
+		reg_output_active_next = 0;
 	end else if(gpio_1 == 1 && gpio_2 == 0 && gpio_3 == 0) begin
 		reg_in_horizontal_blanking_next = reg_in_horizontal_blanking - 4'd10;
 	end else if(gpio_1 == 1 && gpio_2 == 1 && gpio_3 == 0) begin
@@ -488,6 +495,8 @@ begin
 		reg_in_vertical_blanking_next = reg_in_vertical_blanking - 3'd5;
 	end else if(gpio_1 == 0 && gpio_2 == 1 && gpio_3 == 1) begin
 		reg_in_vertical_blanking_next = reg_in_vertical_blanking + 3'd5;
+	end else if(gpio_1 == 1 && gpio_2 == 1 && gpio_3 == 1) begin
+		reg_output_active_next = 1;
 	end
 end
 

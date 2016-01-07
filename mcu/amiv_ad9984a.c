@@ -83,3 +83,9 @@ void AMIV_AD9984A_Init(ad9984a_mode mode)
 
 	}
 }
+
+uint8_t AMIV_AD9984A_HSYNCActive()
+{
+	AMIV_I2C_ChangeSlave(AMIV_I2C_SLAVE_AD9984A);
+	return AMIV_I2C_RD_Reg(AD9984A_REG_SYNC) & 0x80;
+}

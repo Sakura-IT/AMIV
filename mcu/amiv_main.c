@@ -9,6 +9,9 @@
 #include "amiv_flash.h"
 #include "amiv_button.h"
 #include "amiv_util.h"
+#include "amiv_fpga.h"
+
+#define POLLING_INTERVAL	200000
 
 int main(void)
 {
@@ -136,7 +139,20 @@ int main(void)
 		}
 	}
 
-    while(1)
+	/* reset configuration in fpga */
+	AMIV_FPGA_Reset();
+
+	/* Wait for picture */
+	while(AMIV_AD9984A_HSYNCActive() == 0)
+	{
+		for(i = 0; i < POLLING_INTERVAL; i++);
+	}
+
+	AMIV_UART_SendString("Starting output from FPGA\r\n");
+	AMIV_FPGA_StartOutput();
+	AMIV_UART_SendString("Done!\r\n");
+
+    while(true)
     {
     	AMIV_BUTTON_FSM();
     }

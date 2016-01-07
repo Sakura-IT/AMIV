@@ -12,6 +12,7 @@
 #define AD9984A_REG_POWER_1				0x03
 #define AD9984A_REG_PLL_1				0x01
 #define AD9984A_REG_PLL_2				0x02
+#define AD9984A_REG_SYNC				0x24
 
 typedef enum
 {
@@ -19,6 +20,7 @@ typedef enum
 } ad9984a_mode;
 
 void AMIV_AD9984A_Init(ad9984a_mode mode);
+uint8_t AMIV_AD9984A_HSYNCActive();
 
 static const uint8_t AD9984A_WRRegList[] = {
               0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,

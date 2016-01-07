@@ -25,6 +25,7 @@
  */
 
 #include "stm32f0xx_flash.h"
+#include "amiv_main.h"
 #include "amiv_uart.h"
 #include "amiv_flash.h"
 

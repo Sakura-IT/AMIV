@@ -9,6 +9,7 @@
 #include "amiv_i2c.h"
 #include "amiv_util.h"
 #include "amiv_cmd.h"
+#include "amiv_fpga.h"
 
 extern char AMIV_UART_Command[32];
 extern uint8_t AMIV_UART_CommandCnt;
@@ -19,13 +20,9 @@ void EXTI4_15_IRQHandler(void)
 	if(EXTI_GetITStatus(EXTI_Line5) != RESET)
 	{
 		uint8_t Val;
-		uint32_t i;
 		char *Byte_p;
 
-		AMIV_UART_SendString("IRQ RECIVED LINE 5!\r\n");
-
 		AMIV_I2C_ChangeSlave(AMIV_I2C_SLAVE_ADV7511);
-		for(i = 0; i < 10000;i++);
 		Val = AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_IRQ);
 		Byte_p = AMIV_UTIL_itoahex(Val, 2);
 		AMIV_UART_SendString("IRQ status: ");
@@ -46,30 +43,30 @@ void EXTI4_15_IRQHandler(void)
 				AMIV_UART_SendString("Cable removed!\r\n");
 			}
 		}
-		else if(AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_STATUS) & 0xF0)
+		/* is this interrupt about monitor sense? */
+		if(Val & 0x40)
 		{
-			AMIV_UART_SendString(AMIV_ADV7511_ErrorStrings[AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_STATUS) >> 4]);
+			AMIV_UART_SendString("Monitor sense detected\r\n");
 		}
-		else if(Val & 0x04)
+
+		if(Val & 0x20)
+		{
+			AMIV_UART_SendString("Vsync detected\r\n");
+		}
+
+		if(Val & 0x04)
 		{
 			AMIV_UART_SendString("EDID is available\r\n");
+		}
+
+		if(AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_STATUS) & 0xF0)
+		{
+			AMIV_UART_SendString(AMIV_ADV7511_ErrorStrings[AMIV_I2C_RD_Reg(AMIV_ADV7511_REG_STATUS) >> 4]);
 		}
 
 		AMIV_I2C_WR_Reg(AMIV_ADV7511_REG_IRQ, Val);
 
 		EXTI_ClearITPendingBit(EXTI_Line5);
-	}
-	else if(EXTI_GetITStatus(EXTI_Line8) != RESET)
-	{
-		AMIV_UART_SendString("IRQ RECIVED LINE 8!\r\n");
-
-		EXTI_ClearITPendingBit(EXTI_Line8);
-	}
-	else if(EXTI_GetITStatus(EXTI_Line4) != RESET)
-	{
-		AMIV_UART_SendString("IRQ RECIVED LINE 4!\r\n");
-
-		EXTI_ClearITPendingBit(EXTI_Line4);
 	}
 }
 

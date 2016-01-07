@@ -1,31 +1,16 @@
-/* FPGA scroll truth table
- *
- * gpio_1	gpio_2	gpio_3	action
- *
- * 0		0		0		reset to default
- * 1		0		0		scroll right
- * 0		1		0		scroll up
- * 1		1		0		scroll left
- * 0		0		1		dont care
- * 1		0		1		dont care
- * 0		1		1		scroll down
- * 1		1		1		dont care
- *
- * use gpio_0 to clock in to FPGA
- */
-
 #include "stm32f0xx_gpio.h"
+#include "amiv_main.h"
 #include "amiv_button.h"
 #include "amiv_adv7511.h"
 #include "amiv_ad9984a.h"
 #include "amiv_i2c.h"
 #include "amiv_flash.h"
 #include "amiv_uart.h"
+#include "amiv_fpga.h"
 
 #define DEBOUNCE_LIMIT_LONG_PRESS		60000
 #define LONG_PRESS						30000
 #define MIN_VALID_PRESS					3000
-#define DELAY							1000
 
 #define DEFAULT_CHIP					0x01
 #define DEFAULT_REG_MSB					0x37
@@ -99,57 +84,23 @@ static uint8_t SaveGeneralConfig()
 	return Status;
 }
 
-static void Reset()
-{
-	uint32_t i = 0;
-	/* reset screen position */
-
-	GPIO_ResetBits(GPIOA, GPIO_Pin_15); /* FPGA gpio_3 */
-	GPIO_ResetBits(GPIOB, GPIO_Pin_3); /* FPGA gpio_2 */
-	GPIO_ResetBits(GPIOB, GPIO_Pin_4); /* FPGA gpio_1 */
-
-	GPIO_SetBits(GPIOB, GPIO_Pin_5); /* FPGA gpio_0 */
-	for(i = 0; i < DELAY; i++);
-	GPIO_ResetBits(GPIOB, GPIO_Pin_5);
-	for(i = 0; i < DELAY; i++);
-	GPIO_SetBits(GPIOB, GPIO_Pin_5);
-	for(i = 0; i < DELAY; i++);
-}
-
 static void Scroll(FPGAAction_t Action)
 {
-	uint32_t i = 0;
-	/* reset screen position */
-
-	GPIO_ResetBits(GPIOA, GPIO_Pin_15); /* FPGA gpio_3 */
-	GPIO_ResetBits(GPIOB, GPIO_Pin_3); /* FPGA gpio_2 */
-	GPIO_ResetBits(GPIOB, GPIO_Pin_4); /* FPGA gpio_1 */
-
 	switch(Action)
 	{
 	case FPGA_ACTION_SCROLL_RIGHT:
-		GPIO_SetBits(GPIOB, GPIO_Pin_4); /* FPGA gpio_1 */
+		AMIV_FPGA_ScrollRight();
 		break;
 	case FPGA_ACTION_SCROLL_LEFT:
-		GPIO_SetBits(GPIOB, GPIO_Pin_4); /* FPGA gpio_1 */
-		GPIO_SetBits(GPIOB, GPIO_Pin_3); /* FPGA gpio_2 */
+		AMIV_FPGA_ScrollLeft();
 		break;
 	case FPGA_ACTION_SCROLL_UP:
-		GPIO_SetBits(GPIOB, GPIO_Pin_3); /* FPGA gpio_2 */
+		AMIV_FPGA_ScrollUp();
 		break;
 	case FPGA_ACTION_SCROLL_DOWN:
-		GPIO_SetBits(GPIOB, GPIO_Pin_3); /* FPGA gpio_2 */
-		GPIO_SetBits(GPIOA, GPIO_Pin_15); /* FPGA gpio_3 */
+		AMIV_FPGA_ScrollDown();
 		break;
 	}
-
-	/* Toggle gpio 0 to clock the setting into FPGA */
-	GPIO_SetBits(GPIOB, GPIO_Pin_5); /* FPGA gpio_0 */
-	for(i = 0; i < DELAY; i++);
-	GPIO_ResetBits(GPIOB, GPIO_Pin_5);
-	for(i = 0; i < DELAY; i++);
-	GPIO_SetBits(GPIOB, GPIO_Pin_5);
-	for(i = 0; i < DELAY; i++);
 }
 
 static void ExeciteButtonFunction()
@@ -396,7 +347,6 @@ void AMIV_BUTTON_FSM()
 	switch(gButtonState)
 	{
 	case BUTTON_STATE_INIT:
-		Reset();
 		gButtonState = BUTTON_STATE_IDLE;
 		break;
 	case BUTTON_STATE_IDLE:
