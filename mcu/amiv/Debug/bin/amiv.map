@@ -201,8 +201,6 @@ Discarded input sections
                 0x00000000       0x44 ..\obj\stm32f0xx_gpio.o
  .text.GPIO_ReadInputData
                 0x00000000       0x18 ..\obj\stm32f0xx_gpio.o
- .text.GPIO_ReadOutputDataBit
-                0x00000000       0x48 ..\obj\stm32f0xx_gpio.o
  .text.GPIO_ReadOutputData
                 0x00000000       0x18 ..\obj\stm32f0xx_gpio.o
  .text.GPIO_WriteBit
@@ -215,10 +213,6 @@ Discarded input sections
  .rodata        0x00000000       0x2c ..\obj\amiv_ad9984a.o
  .text          0x00000000        0x0 ..\obj\amiv_adv7511.o
  .bss           0x00000000        0x2 ..\obj\amiv_adv7511.o
- .text.AMIV_ADV7511_IncreaseVerticalSize
-                0x00000000       0x30 ..\obj\amiv_adv7511.o
- .text.AMIV_ADV7511_DecreaseVerticalSize
-                0x00000000       0x40 ..\obj\amiv_adv7511.o
  .text          0x00000000        0x0 ..\obj\stm32f0xx_usart.o
  .data          0x00000000        0x0 ..\obj\stm32f0xx_usart.o
  .bss           0x00000000        0x0 ..\obj\stm32f0xx_usart.o
@@ -423,7 +417,7 @@ Linker script and memory map
 
                 0x20001000                _eram = 0x20001000
 
-.text           0x08000000     0x4f90
+.text           0x08000000     0x5024
  *(.isr_vector)
  .isr_vector    0x08000000       0xc4 ..\obj\startup_stm32f0xx.o
                 0x08000000                g_pfnVectors
@@ -443,346 +437,349 @@ Linker script and memory map
  .text.AMIV_UART_ReadByte
                 0x080001ec       0x1c ..\obj\amiv_uart.o
                 0x080001ec                AMIV_UART_ReadByte
- .text.main     0x08000208      0x3bc ..\obj\amiv_main.o
+ .text.main     0x08000208      0x3b4 ..\obj\amiv_main.o
                 0x08000208                main
  .text.RCC_I2CCLKConfig
-                0x080005c4       0x2c ..\obj\stm32f0xx_rcc.o
-                0x080005c4                RCC_I2CCLKConfig
+                0x080005bc       0x2c ..\obj\stm32f0xx_rcc.o
+                0x080005bc                RCC_I2CCLKConfig
  .text.RCC_GetClocksFreq
-                0x080005f0      0x1cc ..\obj\stm32f0xx_rcc.o
-                0x080005f0                RCC_GetClocksFreq
+                0x080005e8      0x1cc ..\obj\stm32f0xx_rcc.o
+                0x080005e8                RCC_GetClocksFreq
  .text.RCC_AHBPeriphClockCmd
-                0x080007bc       0x3c ..\obj\stm32f0xx_rcc.o
-                0x080007bc                RCC_AHBPeriphClockCmd
+                0x080007b4       0x3c ..\obj\stm32f0xx_rcc.o
+                0x080007b4                RCC_AHBPeriphClockCmd
  .text.RCC_APB2PeriphClockCmd
-                0x080007f8       0x3c ..\obj\stm32f0xx_rcc.o
-                0x080007f8                RCC_APB2PeriphClockCmd
+                0x080007f0       0x3c ..\obj\stm32f0xx_rcc.o
+                0x080007f0                RCC_APB2PeriphClockCmd
  .text.RCC_APB1PeriphClockCmd
-                0x08000834       0x3c ..\obj\stm32f0xx_rcc.o
-                0x08000834                RCC_APB1PeriphClockCmd
+                0x0800082c       0x3c ..\obj\stm32f0xx_rcc.o
+                0x0800082c                RCC_APB1PeriphClockCmd
  .text.NVIC_SystemReset
-                0x08000870       0x1c ..\obj\amiv_cmd.o
+                0x08000868       0x1c ..\obj\amiv_cmd.o
  .text.GetValueFromString
-                0x0800088c       0x34 ..\obj\amiv_cmd.o
+                0x08000884       0x34 ..\obj\amiv_cmd.o
  .text.AMIV_CMD_ExecuteCommand
-                0x080008c0      0x7e4 ..\obj\amiv_cmd.o
-                0x080008c0                AMIV_CMD_ExecuteCommand
+                0x080008b8      0x7e4 ..\obj\amiv_cmd.o
+                0x080008b8                AMIV_CMD_ExecuteCommand
  .text.Reset_Handler
-                0x080010a4       0x4c ..\obj\startup_stm32f0xx.o
-                0x080010a4                Reset_Handler
+                0x0800109c       0x4c ..\obj\startup_stm32f0xx.o
+                0x0800109c                Reset_Handler
  .text.Default_Handler
-                0x080010f0        0x2 ..\obj\startup_stm32f0xx.o
-                0x080010f0                TIM1_CC_IRQHandler
-                0x080010f0                HardFault_Handler
-                0x080010f0                ADC1_COMP_IRQHandler
-                0x080010f0                SysTick_Handler
-                0x080010f0                PVD_IRQHandler
-                0x080010f0                PendSV_Handler
-                0x080010f0                NMI_Handler
-                0x080010f0                I2C1_IRQHandler
-                0x080010f0                SPI1_IRQHandler
-                0x080010f0                TIM6_DAC_IRQHandler
-                0x080010f0                EXTI2_3_IRQHandler
-                0x080010f0                I2C2_IRQHandler
-                0x080010f0                TIM17_IRQHandler
-                0x080010f0                RTC_IRQHandler
-                0x080010f0                TIM16_IRQHandler
-                0x080010f0                TIM3_IRQHandler
-                0x080010f0                RCC_IRQHandler
-                0x080010f0                DMA1_Channel1_IRQHandler
-                0x080010f0                Default_Handler
-                0x080010f0                CEC_IRQHandler
-                0x080010f0                TIM14_IRQHandler
-                0x080010f0                DMA1_Channel4_5_IRQHandler
-                0x080010f0                TIM15_IRQHandler
-                0x080010f0                EXTI0_1_IRQHandler
-                0x080010f0                SPI2_IRQHandler
-                0x080010f0                SVC_Handler
-                0x080010f0                TS_IRQHandler
-                0x080010f0                WWDG_IRQHandler
-                0x080010f0                TIM2_IRQHandler
-                0x080010f0                DMA1_Channel2_3_IRQHandler
-                0x080010f0                USART2_IRQHandler
-                0x080010f0                FLASH_IRQHandler
-                0x080010f0                TIM1_BRK_UP_TRG_COM_IRQHandler
- *fill*         0x080010f2        0x2 
+                0x080010e8        0x2 ..\obj\startup_stm32f0xx.o
+                0x080010e8                TIM1_CC_IRQHandler
+                0x080010e8                HardFault_Handler
+                0x080010e8                ADC1_COMP_IRQHandler
+                0x080010e8                SysTick_Handler
+                0x080010e8                PVD_IRQHandler
+                0x080010e8                PendSV_Handler
+                0x080010e8                NMI_Handler
+                0x080010e8                I2C1_IRQHandler
+                0x080010e8                SPI1_IRQHandler
+                0x080010e8                TIM6_DAC_IRQHandler
+                0x080010e8                EXTI2_3_IRQHandler
+                0x080010e8                I2C2_IRQHandler
+                0x080010e8                TIM17_IRQHandler
+                0x080010e8                RTC_IRQHandler
+                0x080010e8                TIM16_IRQHandler
+                0x080010e8                TIM3_IRQHandler
+                0x080010e8                RCC_IRQHandler
+                0x080010e8                DMA1_Channel1_IRQHandler
+                0x080010e8                Default_Handler
+                0x080010e8                CEC_IRQHandler
+                0x080010e8                TIM14_IRQHandler
+                0x080010e8                DMA1_Channel4_5_IRQHandler
+                0x080010e8                TIM15_IRQHandler
+                0x080010e8                EXTI0_1_IRQHandler
+                0x080010e8                SPI2_IRQHandler
+                0x080010e8                SVC_Handler
+                0x080010e8                TS_IRQHandler
+                0x080010e8                WWDG_IRQHandler
+                0x080010e8                TIM2_IRQHandler
+                0x080010e8                DMA1_Channel2_3_IRQHandler
+                0x080010e8                USART2_IRQHandler
+                0x080010e8                FLASH_IRQHandler
+                0x080010e8                TIM1_BRK_UP_TRG_COM_IRQHandler
+ *fill*         0x080010ea        0x2 
  .text.PageToAddress
-                0x080010f4       0x68 ..\obj\amiv_flash.o
+                0x080010ec       0x68 ..\obj\amiv_flash.o
  .text.AMIV_FLASH_Init
-                0x0800115c        0x8 ..\obj\amiv_flash.o
-                0x0800115c                AMIV_FLASH_Init
+                0x08001154        0x8 ..\obj\amiv_flash.o
+                0x08001154                AMIV_FLASH_Init
  .text.AMIV_FLASH_Erase
-                0x08001164       0x78 ..\obj\amiv_flash.o
-                0x08001164                AMIV_FLASH_Erase
+                0x0800115c       0x78 ..\obj\amiv_flash.o
+                0x0800115c                AMIV_FLASH_Erase
  .text.AMIV_FLASH_Read
-                0x080011dc       0x34 ..\obj\amiv_flash.o
-                0x080011dc                AMIV_FLASH_Read
+                0x080011d4       0x34 ..\obj\amiv_flash.o
+                0x080011d4                AMIV_FLASH_Read
  .text.AMIV_FLASH_Write
-                0x08001210       0x60 ..\obj\amiv_flash.o
-                0x08001210                AMIV_FLASH_Write
+                0x08001208       0x60 ..\obj\amiv_flash.o
+                0x08001208                AMIV_FLASH_Write
  .text.AMIV_FLASH_ButtonConfigPresent
-                0x08001270       0x2c ..\obj\amiv_flash.o
-                0x08001270                AMIV_FLASH_ButtonConfigPresent
+                0x08001268       0x2c ..\obj\amiv_flash.o
+                0x08001268                AMIV_FLASH_ButtonConfigPresent
  .text.AMIV_FLASH_GeneralConfigPresent
-                0x0800129c       0x20 ..\obj\amiv_flash.o
-                0x0800129c                AMIV_FLASH_GeneralConfigPresent
+                0x08001294       0x20 ..\obj\amiv_flash.o
+                0x08001294                AMIV_FLASH_GeneralConfigPresent
  .text.AMIV_FLASH_ReadGeneralConfig
-                0x080012bc       0x4c ..\obj\amiv_flash.o
-                0x080012bc                AMIV_FLASH_ReadGeneralConfig
+                0x080012b4       0x4c ..\obj\amiv_flash.o
+                0x080012b4                AMIV_FLASH_ReadGeneralConfig
  .text.AMIV_FLASH_WriteGeneralConfig
-                0x08001308       0xdc ..\obj\amiv_flash.o
-                0x08001308                AMIV_FLASH_WriteGeneralConfig
+                0x08001300       0xdc ..\obj\amiv_flash.o
+                0x08001300                AMIV_FLASH_WriteGeneralConfig
  .text.AMIV_FLASH_ReadButtonConfig
-                0x080013e4       0x30 ..\obj\amiv_flash.o
-                0x080013e4                AMIV_FLASH_ReadButtonConfig
+                0x080013dc       0x30 ..\obj\amiv_flash.o
+                0x080013dc                AMIV_FLASH_ReadButtonConfig
  .text.AMIV_FLASH_WriteButtonConfig
-                0x08001414       0x60 ..\obj\amiv_flash.o
-                0x08001414                AMIV_FLASH_WriteButtonConfig
+                0x0800140c       0x60 ..\obj\amiv_flash.o
+                0x0800140c                AMIV_FLASH_WriteButtonConfig
  .text.I2C_Init
-                0x08001474       0xd0 ..\obj\stm32f0xx_i2c.o
-                0x08001474                I2C_Init
- .text.I2C_Cmd  0x08001544       0x3c ..\obj\stm32f0xx_i2c.o
-                0x08001544                I2C_Cmd
+                0x0800146c       0xd0 ..\obj\stm32f0xx_i2c.o
+                0x0800146c                I2C_Init
+ .text.I2C_Cmd  0x0800153c       0x3c ..\obj\stm32f0xx_i2c.o
+                0x0800153c                I2C_Cmd
  .text.I2C_TransferHandling
-                0x08001580       0x60 ..\obj\stm32f0xx_i2c.o
-                0x08001580                I2C_TransferHandling
+                0x08001578       0x60 ..\obj\stm32f0xx_i2c.o
+                0x08001578                I2C_TransferHandling
  .text.I2C_SendData
-                0x080015e0       0x1c ..\obj\stm32f0xx_i2c.o
-                0x080015e0                I2C_SendData
+                0x080015d8       0x1c ..\obj\stm32f0xx_i2c.o
+                0x080015d8                I2C_SendData
  .text.I2C_ReceiveData
-                0x080015fc       0x18 ..\obj\stm32f0xx_i2c.o
-                0x080015fc                I2C_ReceiveData
+                0x080015f4       0x18 ..\obj\stm32f0xx_i2c.o
+                0x080015f4                I2C_ReceiveData
  .text.I2C_GetFlagStatus
-                0x08001614       0x4c ..\obj\stm32f0xx_i2c.o
-                0x08001614                I2C_GetFlagStatus
+                0x0800160c       0x4c ..\obj\stm32f0xx_i2c.o
+                0x0800160c                I2C_GetFlagStatus
  .text.I2C_ClearFlag
-                0x08001660       0x18 ..\obj\stm32f0xx_i2c.o
-                0x08001660                I2C_ClearFlag
+                0x08001658       0x18 ..\obj\stm32f0xx_i2c.o
+                0x08001658                I2C_ClearFlag
  .text.SystemInit1
-                0x08001678       0x8c ..\obj\system_stm32f0xx_temp.o
-                0x08001678                SystemInit
-                0x08001678                SystemInit1
+                0x08001670       0x8c ..\obj\system_stm32f0xx_temp.o
+                0x08001670                SystemInit
+                0x08001670                SystemInit1
  .text.SetSysClock1
-                0x08001704       0xe0 ..\obj\system_stm32f0xx_temp.o
-                0x08001704                SetSysClock
+                0x080016fc       0xe0 ..\obj\system_stm32f0xx_temp.o
+                0x080016fc                SetSysClock
  .text.EXTI4_15_IRQHandler
-                0x080017e4      0x114 ..\obj\amiv_irq.o
-                0x080017e4                EXTI4_15_IRQHandler
+                0x080017dc      0x114 ..\obj\amiv_irq.o
+                0x080017dc                EXTI4_15_IRQHandler
  .text.USART1_IRQHandler
-                0x080018f8       0x98 ..\obj\amiv_irq.o
-                0x080018f8                USART1_IRQHandler
+                0x080018f0       0x98 ..\obj\amiv_irq.o
+                0x080018f0                USART1_IRQHandler
  .text.AMIV_IRQ_Init
-                0x08001990      0x100 ..\obj\amiv_irq.o
-                0x08001990                AMIV_IRQ_Init
+                0x08001988       0x94 ..\obj\amiv_irq.o
+                0x08001988                AMIV_IRQ_Init
  .text.AMIV_IRQ_USART1_Enable
-                0x08001a90       0x28 ..\obj\amiv_irq.o
-                0x08001a90                AMIV_IRQ_USART1_Enable
+                0x08001a1c       0x28 ..\obj\amiv_irq.o
+                0x08001a1c                AMIV_IRQ_USART1_Enable
  .text.GPIO_Init
-                0x08001ab8      0x138 ..\obj\stm32f0xx_gpio.o
-                0x08001ab8                GPIO_Init
+                0x08001a44      0x138 ..\obj\stm32f0xx_gpio.o
+                0x08001a44                GPIO_Init
  .text.GPIO_ReadInputDataBit
-                0x08001bf0       0x48 ..\obj\stm32f0xx_gpio.o
-                0x08001bf0                GPIO_ReadInputDataBit
+                0x08001b7c       0x48 ..\obj\stm32f0xx_gpio.o
+                0x08001b7c                GPIO_ReadInputDataBit
+ .text.GPIO_ReadOutputDataBit
+                0x08001bc4       0x48 ..\obj\stm32f0xx_gpio.o
+                0x08001bc4                GPIO_ReadOutputDataBit
  .text.GPIO_SetBits
-                0x08001c38       0x1c ..\obj\stm32f0xx_gpio.o
-                0x08001c38                GPIO_SetBits
+                0x08001c0c       0x1c ..\obj\stm32f0xx_gpio.o
+                0x08001c0c                GPIO_SetBits
  .text.GPIO_ResetBits
-                0x08001c54       0x1c ..\obj\stm32f0xx_gpio.o
-                0x08001c54                GPIO_ResetBits
+                0x08001c28       0x1c ..\obj\stm32f0xx_gpio.o
+                0x08001c28                GPIO_ResetBits
  .text.GPIO_PinAFConfig
-                0x08001c70       0x9c ..\obj\stm32f0xx_gpio.o
-                0x08001c70                GPIO_PinAFConfig
+                0x08001c44       0x9c ..\obj\stm32f0xx_gpio.o
+                0x08001c44                GPIO_PinAFConfig
  .text.AMIV_AD9984A_Init
-                0x08001d0c      0x1ac ..\obj\amiv_ad9984a.o
-                0x08001d0c                AMIV_AD9984A_Init
+                0x08001ce0      0x1ac ..\obj\amiv_ad9984a.o
+                0x08001ce0                AMIV_AD9984A_Init
  .text.AMIV_AD9984A_HSYNCActive
-                0x08001eb8       0x20 ..\obj\amiv_ad9984a.o
-                0x08001eb8                AMIV_AD9984A_HSYNCActive
+                0x08001e8c       0x20 ..\obj\amiv_ad9984a.o
+                0x08001e8c                AMIV_AD9984A_HSYNCActive
  .text.AMIV_ADV7511_Init
-                0x08001ed8       0x18 ..\obj\amiv_adv7511.o
-                0x08001ed8                AMIV_ADV7511_Init
+                0x08001eac       0x18 ..\obj\amiv_adv7511.o
+                0x08001eac                AMIV_ADV7511_Init
  .text.AMIV_ADV7511_PowerUp
-                0x08001ef0      0x16c ..\obj\amiv_adv7511.o
-                0x08001ef0                AMIV_ADV7511_PowerUp
+                0x08001ec4      0x16c ..\obj\amiv_adv7511.o
+                0x08001ec4                AMIV_ADV7511_PowerUp
  .text.AMIV_ADV7511_ReadEDID
-                0x0800205c       0x68 ..\obj\amiv_adv7511.o
-                0x0800205c                AMIV_ADV7511_ReadEDID
+                0x08002030       0x68 ..\obj\amiv_adv7511.o
+                0x08002030                AMIV_ADV7511_ReadEDID
  .text.AMIV_ADV7511_GetEDIDPointer
-                0x080020c4       0x10 ..\obj\amiv_adv7511.o
-                0x080020c4                AMIV_ADV7511_GetEDIDPointer
+                0x08002098       0x10 ..\obj\amiv_adv7511.o
+                0x08002098                AMIV_ADV7511_GetEDIDPointer
  .text.USART_Init
-                0x080020d4      0x160 ..\obj\stm32f0xx_usart.o
-                0x080020d4                USART_Init
+                0x080020a8      0x160 ..\obj\stm32f0xx_usart.o
+                0x080020a8                USART_Init
  .text.USART_Cmd
-                0x08002234       0x3c ..\obj\stm32f0xx_usart.o
-                0x08002234                USART_Cmd
+                0x08002208       0x3c ..\obj\stm32f0xx_usart.o
+                0x08002208                USART_Cmd
  .text.USART_SendData
-                0x08002270       0x24 ..\obj\stm32f0xx_usart.o
-                0x08002270                USART_SendData
+                0x08002244       0x24 ..\obj\stm32f0xx_usart.o
+                0x08002244                USART_SendData
  .text.USART_ReceiveData
-                0x08002294       0x1c ..\obj\stm32f0xx_usart.o
-                0x08002294                USART_ReceiveData
+                0x08002268       0x1c ..\obj\stm32f0xx_usart.o
+                0x08002268                USART_ReceiveData
  .text.USART_ITConfig
-                0x080022b0       0x84 ..\obj\stm32f0xx_usart.o
-                0x080022b0                USART_ITConfig
+                0x08002284       0x84 ..\obj\stm32f0xx_usart.o
+                0x08002284                USART_ITConfig
  .text.USART_GetFlagStatus
-                0x08002334       0x3c ..\obj\stm32f0xx_usart.o
-                0x08002334                USART_GetFlagStatus
+                0x08002308       0x3c ..\obj\stm32f0xx_usart.o
+                0x08002308                USART_GetFlagStatus
  .text.USART_GetITStatus
-                0x08002370       0xb4 ..\obj\stm32f0xx_usart.o
-                0x08002370                USART_GetITStatus
+                0x08002344       0xb4 ..\obj\stm32f0xx_usart.o
+                0x08002344                USART_GetITStatus
  .text.AMIV_I2C_GetSlaveAddress
-                0x08002424       0x34 ..\obj\amiv_i2c.o
+                0x080023f8       0x34 ..\obj\amiv_i2c.o
  .text.AMIV_I2C_Init
-                0x08002458       0x6c ..\obj\amiv_i2c.o
-                0x08002458                AMIV_I2C_Init
+                0x0800242c       0x6c ..\obj\amiv_i2c.o
+                0x0800242c                AMIV_I2C_Init
  .text.AMIV_I2C_WR_Reg
-                0x080024c4       0xf0 ..\obj\amiv_i2c.o
-                0x080024c4                AMIV_I2C_WR_Reg
+                0x08002498       0xf0 ..\obj\amiv_i2c.o
+                0x08002498                AMIV_I2C_WR_Reg
  .text.AMIV_I2C_RD_Reg
-                0x080025b4       0xf4 ..\obj\amiv_i2c.o
-                0x080025b4                AMIV_I2C_RD_Reg
+                0x08002588       0xf4 ..\obj\amiv_i2c.o
+                0x08002588                AMIV_I2C_RD_Reg
  .text.AMIV_I2C_RMW_Reg
-                0x080026a8       0x48 ..\obj\amiv_i2c.o
-                0x080026a8                AMIV_I2C_RMW_Reg
+                0x0800267c       0x48 ..\obj\amiv_i2c.o
+                0x0800267c                AMIV_I2C_RMW_Reg
  .text.AMIV_I2C_ChangeSlave
-                0x080026f0       0x20 ..\obj\amiv_i2c.o
-                0x080026f0                AMIV_I2C_ChangeSlave
+                0x080026c4       0x20 ..\obj\amiv_i2c.o
+                0x080026c4                AMIV_I2C_ChangeSlave
  .text.AMIV_I2C_GetActiveSlave
-                0x08002710       0x20 ..\obj\amiv_i2c.o
-                0x08002710                AMIV_I2C_GetActiveSlave
+                0x080026e4       0x20 ..\obj\amiv_i2c.o
+                0x080026e4                AMIV_I2C_GetActiveSlave
  .text.ClockOut
-                0x08002730       0x70 ..\obj\amiv_fpga.o
+                0x08002704       0x70 ..\obj\amiv_fpga.o
  .text.AMIV_FPGA_StartOutput
-                0x080027a0       0x34 ..\obj\amiv_fpga.o
-                0x080027a0                AMIV_FPGA_StartOutput
+                0x08002774       0x44 ..\obj\amiv_fpga.o
+                0x08002774                AMIV_FPGA_StartOutput
  .text.AMIV_FPGA_Reset
-                0x080027d4       0x34 ..\obj\amiv_fpga.o
-                0x080027d4                AMIV_FPGA_Reset
+                0x080027b8       0x34 ..\obj\amiv_fpga.o
+                0x080027b8                AMIV_FPGA_Reset
  .text.AMIV_FPGA_ScrollRight
-                0x08002808       0x34 ..\obj\amiv_fpga.o
-                0x08002808                AMIV_FPGA_ScrollRight
+                0x080027ec       0x34 ..\obj\amiv_fpga.o
+                0x080027ec                AMIV_FPGA_ScrollRight
  .text.AMIV_FPGA_ScrollLeft
-                0x0800283c       0x34 ..\obj\amiv_fpga.o
-                0x0800283c                AMIV_FPGA_ScrollLeft
+                0x08002820       0x34 ..\obj\amiv_fpga.o
+                0x08002820                AMIV_FPGA_ScrollLeft
  .text.AMIV_FPGA_ScrollUp
-                0x08002870       0x34 ..\obj\amiv_fpga.o
-                0x08002870                AMIV_FPGA_ScrollUp
+                0x08002854       0x34 ..\obj\amiv_fpga.o
+                0x08002854                AMIV_FPGA_ScrollUp
  .text.AMIV_FPGA_ScrollDown
-                0x080028a4       0x34 ..\obj\amiv_fpga.o
-                0x080028a4                AMIV_FPGA_ScrollDown
+                0x08002888       0x34 ..\obj\amiv_fpga.o
+                0x08002888                AMIV_FPGA_ScrollDown
  .text.NVIC_SystemReset
-                0x080028d8       0x1c ..\obj\amiv_button.o
+                0x080028bc       0x1c ..\obj\amiv_button.o
  .text.SaveGeneralConfig
-                0x080028f4      0x124 ..\obj\amiv_button.o
- .text.Scroll   0x08002a18       0x44 ..\obj\amiv_button.o
+                0x080028d8      0x124 ..\obj\amiv_button.o
+ .text.Scroll   0x080029fc       0x44 ..\obj\amiv_button.o
  .text.ExeciteButtonFunction
-                0x08002a5c      0x1e8 ..\obj\amiv_button.o
+                0x08002a40      0x284 ..\obj\amiv_button.o
  .text.ExecuteButtonFunctionShortPress
-                0x08002c44       0x30 ..\obj\amiv_button.o
+                0x08002cc4       0x30 ..\obj\amiv_button.o
  .text.ExecuteButtonFunctionLongPress
-                0x08002c74       0x30 ..\obj\amiv_button.o
- .text.Scan     0x08002ca4       0xa8 ..\obj\amiv_button.o
+                0x08002cf4       0x30 ..\obj\amiv_button.o
+ .text.Scan     0x08002d24       0xa8 ..\obj\amiv_button.o
  .text.AMIV_BUTTON_Init
-                0x08002d4c      0x164 ..\obj\amiv_button.o
-                0x08002d4c                AMIV_BUTTON_Init
+                0x08002dcc      0x164 ..\obj\amiv_button.o
+                0x08002dcc                AMIV_BUTTON_Init
  .text.AMIV_BUTTON_SaveGeneralConfig
-                0x08002eb0       0x10 ..\obj\amiv_button.o
-                0x08002eb0                AMIV_BUTTON_SaveGeneralConfig
+                0x08002f30       0x10 ..\obj\amiv_button.o
+                0x08002f30                AMIV_BUTTON_SaveGeneralConfig
  .text.AMIV_BUTTON_ConfigureButton
-                0x08002ec0       0x44 ..\obj\amiv_button.o
-                0x08002ec0                AMIV_BUTTON_ConfigureButton
+                0x08002f40       0x44 ..\obj\amiv_button.o
+                0x08002f40                AMIV_BUTTON_ConfigureButton
  .text.AMIV_BUTTON_RemoveButtonConfiguration
-                0x08002f04      0x120 ..\obj\amiv_button.o
-                0x08002f04                AMIV_BUTTON_RemoveButtonConfiguration
+                0x08002f84      0x120 ..\obj\amiv_button.o
+                0x08002f84                AMIV_BUTTON_RemoveButtonConfiguration
  .text.AMIV_BUTTON_CheckSpecialState
-                0x08003024       0xa8 ..\obj\amiv_button.o
-                0x08003024                AMIV_BUTTON_CheckSpecialState
+                0x080030a4       0xa8 ..\obj\amiv_button.o
+                0x080030a4                AMIV_BUTTON_CheckSpecialState
  .text.AMIV_BUTTON_FSM
-                0x080030cc      0x108 ..\obj\amiv_button.o
-                0x080030cc                AMIV_BUTTON_FSM
+                0x0800314c      0x104 ..\obj\amiv_button.o
+                0x0800314c                AMIV_BUTTON_FSM
  .text.FLASH_Unlock
-                0x080031d4       0x2c ..\obj\stm32f0xx_flash.o
-                0x080031d4                FLASH_Unlock
+                0x08003250       0x2c ..\obj\stm32f0xx_flash.o
+                0x08003250                FLASH_Unlock
  .text.FLASH_Lock
-                0x08003200       0x18 ..\obj\stm32f0xx_flash.o
-                0x08003200                FLASH_Lock
+                0x0800327c       0x18 ..\obj\stm32f0xx_flash.o
+                0x0800327c                FLASH_Lock
  .text.FLASH_ErasePage
-                0x08003218       0x7c ..\obj\stm32f0xx_flash.o
-                0x08003218                FLASH_ErasePage
+                0x08003294       0x7c ..\obj\stm32f0xx_flash.o
+                0x08003294                FLASH_ErasePage
  .text.FLASH_ProgramWord
-                0x08003294       0xb0 ..\obj\stm32f0xx_flash.o
-                0x08003294                FLASH_ProgramWord
+                0x08003310       0xb0 ..\obj\stm32f0xx_flash.o
+                0x08003310                FLASH_ProgramWord
  .text.FLASH_ClearFlag
-                0x08003344       0x18 ..\obj\stm32f0xx_flash.o
-                0x08003344                FLASH_ClearFlag
+                0x080033c0       0x18 ..\obj\stm32f0xx_flash.o
+                0x080033c0                FLASH_ClearFlag
  .text.FLASH_GetStatus
-                0x0800335c       0x58 ..\obj\stm32f0xx_flash.o
-                0x0800335c                FLASH_GetStatus
+                0x080033d8       0x58 ..\obj\stm32f0xx_flash.o
+                0x080033d8                FLASH_GetStatus
  .text.FLASH_WaitForLastOperation
-                0x080033b4       0x5c ..\obj\stm32f0xx_flash.o
-                0x080033b4                FLASH_WaitForLastOperation
+                0x08003430       0x5c ..\obj\stm32f0xx_flash.o
+                0x08003430                FLASH_WaitForLastOperation
  .text.EXTI_Init
-                0x08003410       0xd8 ..\obj\stm32f0xx_exti.o
-                0x08003410                EXTI_Init
+                0x0800348c       0xd8 ..\obj\stm32f0xx_exti.o
+                0x0800348c                EXTI_Init
  .text.EXTI_GetITStatus
-                0x080034e8       0x40 ..\obj\stm32f0xx_exti.o
-                0x080034e8                EXTI_GetITStatus
+                0x08003564       0x40 ..\obj\stm32f0xx_exti.o
+                0x08003564                EXTI_GetITStatus
  .text.EXTI_ClearITPendingBit
-                0x08003528       0x18 ..\obj\stm32f0xx_exti.o
-                0x08003528                EXTI_ClearITPendingBit
+                0x080035a4       0x18 ..\obj\stm32f0xx_exti.o
+                0x080035a4                EXTI_ClearITPendingBit
  .text.SYSCFG_EXTILineConfig
-                0x08003540       0x90 ..\obj\stm32f0xx_syscfg.o
-                0x08003540                SYSCFG_EXTILineConfig
+                0x080035bc       0x90 ..\obj\stm32f0xx_syscfg.o
+                0x080035bc                SYSCFG_EXTILineConfig
  .text.AMIV_UTIL_strlen
-                0x080035d0       0x38 ..\obj\amiv_util.o
-                0x080035d0                AMIV_UTIL_strlen
+                0x0800364c       0x38 ..\obj\amiv_util.o
+                0x0800364c                AMIV_UTIL_strlen
  .text.AMIV_UTIL_itoa
-                0x08003608       0x94 ..\obj\amiv_util.o
-                0x08003608                AMIV_UTIL_itoa
+                0x08003684       0x94 ..\obj\amiv_util.o
+                0x08003684                AMIV_UTIL_itoa
  .text.AMIV_UTIL_itoahex
-                0x0800369c       0x80 ..\obj\amiv_util.o
-                0x0800369c                AMIV_UTIL_itoahex
+                0x08003718       0x80 ..\obj\amiv_util.o
+                0x08003718                AMIV_UTIL_itoahex
  .text.AMIV_UTIL_atoi
-                0x0800371c       0x3c ..\obj\amiv_util.o
-                0x0800371c                AMIV_UTIL_atoi
+                0x08003798       0x3c ..\obj\amiv_util.o
+                0x08003798                AMIV_UTIL_atoi
  .text.AMIV_UTIL_atox
-                0x08003758       0x70 ..\obj\amiv_util.o
-                0x08003758                AMIV_UTIL_atox
+                0x080037d4       0x70 ..\obj\amiv_util.o
+                0x080037d4                AMIV_UTIL_atox
  .text.AMIV_UTIL_memset
-                0x080037c8       0x3c ..\obj\amiv_util.o
-                0x080037c8                AMIV_UTIL_memset
+                0x08003844       0x3c ..\obj\amiv_util.o
+                0x08003844                AMIV_UTIL_memset
  .text.AMIV_CONFIG_Init
-                0x08003804        0x8 ..\obj\amiv_config.o
-                0x08003804                AMIV_CONFIG_Init
+                0x08003880       0x20 ..\obj\amiv_config.o
+                0x08003880                AMIV_CONFIG_Init
  .text.AMIV_CONFIG_I2C
-                0x0800380c       0x58 ..\obj\amiv_config.o
-                0x0800380c                AMIV_CONFIG_I2C
+                0x080038a0       0x58 ..\obj\amiv_config.o
+                0x080038a0                AMIV_CONFIG_I2C
  .text.AMIV_CONFIG_UART
-                0x08003864       0x54 ..\obj\amiv_config.o
-                0x08003864                AMIV_CONFIG_UART
+                0x080038f8       0x54 ..\obj\amiv_config.o
+                0x080038f8                AMIV_CONFIG_UART
  .text.AMIV_CONFIG_GPIO
-                0x080038b8       0xc0 ..\obj\amiv_config.o
-                0x080038b8                AMIV_CONFIG_GPIO
+                0x0800394c       0xc0 ..\obj\amiv_config.o
+                0x0800394c                AMIV_CONFIG_GPIO
  .text.AMIV_CONFIG_LED
-                0x08003978       0x3c ..\obj\amiv_config.o
-                0x08003978                AMIV_CONFIG_LED
+                0x08003a0c       0x3c ..\obj\amiv_config.o
+                0x08003a0c                AMIV_CONFIG_LED
  .text.NVIC_Init
-                0x080039b4       0xac ..\obj\stm32f0xx_misc.o
-                0x080039b4                NVIC_Init
- .text          0x08003a60       0x9c c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_udivsi3.o)
-                0x08003a60                __aeabi_uidiv
-                0x08003a60                __udivsi3
-                0x08003ae8                __aeabi_uidivmod
- .text          0x08003afc       0xc0 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_divsi3.o)
-                0x08003afc                __divsi3
-                0x08003afc                __aeabi_idiv
-                0x08003ba8                __aeabi_idivmod
- .text          0x08003bbc        0x4 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_dvmd_tls.o)
-                0x08003bbc                __aeabi_idiv0
-                0x08003bbc                __aeabi_ldiv0
- .text.memcpy   0x08003bc0       0x84 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg.a(lib_a-memcpy-stub.o)
-                0x08003bc0                memcpy
+                0x08003a48       0xac ..\obj\stm32f0xx_misc.o
+                0x08003a48                NVIC_Init
+ .text          0x08003af4       0x9c c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_udivsi3.o)
+                0x08003af4                __aeabi_uidiv
+                0x08003af4                __udivsi3
+                0x08003b7c                __aeabi_uidivmod
+ .text          0x08003b90       0xc0 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_divsi3.o)
+                0x08003b90                __divsi3
+                0x08003b90                __aeabi_idiv
+                0x08003c3c                __aeabi_idivmod
+ .text          0x08003c50        0x4 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_dvmd_tls.o)
+                0x08003c50                __aeabi_idiv0
+                0x08003c50                __aeabi_ldiv0
+ .text.memcpy   0x08003c54       0x84 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg.a(lib_a-memcpy-stub.o)
+                0x08003c54                memcpy
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -796,45 +793,45 @@ Linker script and memory map
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x08003c44      0x274 ..\obj\amiv_main.o
- .rodata        0x08003eb8      0xbec ..\obj\amiv_cmd.o
- .rodata        0x08004aa4       0x68 ..\obj\amiv_flash.o
- .rodata        0x08004b0c      0x158 ..\obj\amiv_irq.o
- .rodata        0x08004c64      0x18c ..\obj\amiv_adv7511.o
- .rodata        0x08004df0       0x28 ..\obj\amiv_i2c.o
- .rodata        0x08004e18      0x164 ..\obj\amiv_button.o
- .rodata        0x08004f7c       0x14 ..\obj\amiv_util.o
+ .rodata        0x08003cd8      0x274 ..\obj\amiv_main.o
+ .rodata        0x08003f4c      0xbec ..\obj\amiv_cmd.o
+ .rodata        0x08004b38       0x68 ..\obj\amiv_flash.o
+ .rodata        0x08004ba0      0x158 ..\obj\amiv_irq.o
+ .rodata        0x08004cf8      0x18c ..\obj\amiv_adv7511.o
+ .rodata        0x08004e84       0x28 ..\obj\amiv_i2c.o
+ .rodata        0x08004eac      0x164 ..\obj\amiv_button.o
+ .rodata        0x08005010       0x14 ..\obj\amiv_util.o
  *(.eh_fram e*)
 
-.glue_7         0x08004f90        0x0
+.glue_7         0x08005024        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x08004f90        0x0
+.glue_7t        0x08005024        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x08004f90        0x0
+.vfp11_veneer   0x08005024        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08004f90        0x0
+.v4_bx          0x08005024        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08004f90        0x0
+.iplt           0x08005024        0x0
  .iplt          0x00000000        0x0 ..\obj\amiv_uart.o
 
-.rel.dyn        0x08004f90        0x0
+.rel.dyn        0x08005024        0x0
  .rel.iplt      0x00000000        0x0 ..\obj\amiv_uart.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08004f90                __exidx_start = .
+                0x08005024                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08004f90                __exidx_end = .
-                0x08004f90                __etext = .
-                0x08004f90                _sidata = __etext
+                0x08005024                __exidx_end = .
+                0x08005024                __etext = .
+                0x08005024                _sidata = __etext
 
-.data           0x20000000       0x44 load address 0x08004f90
+.data           0x20000000       0x44 load address 0x08005024
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -863,10 +860,10 @@ Linker script and memory map
                 0x20000044                __data_end__ = .
                 0x20000044                _edata = __data_end__
 
-.igot.plt       0x20000044        0x0 load address 0x08004fd4
+.igot.plt       0x20000044        0x0 load address 0x08005068
  .igot.plt      0x00000000        0x0 ..\obj\amiv_uart.o
 
-.bss            0x20000044      0x4c4 load address 0x08004fd4
+.bss            0x20000044      0x4c4 load address 0x08005068
                 0x20000044                . = ALIGN (0x4)
                 0x20000044                __bss_start__ = .
                 0x20000044                _sbss = __bss_start__
@@ -936,55 +933,55 @@ LOAD c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm
 END GROUP
 OUTPUT(amiv.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x6601
+.debug_info     0x00000000     0x66d8
  .debug_info    0x00000000      0x30a ..\obj\amiv_uart.o
- .debug_info    0x0000030a      0x325 ..\obj\amiv_main.o
- .debug_info    0x0000062f      0x9b8 ..\obj\stm32f0xx_rcc.o
- .debug_info    0x00000fe7      0x417 ..\obj\amiv_cmd.o
- .debug_info    0x000013fe       0x80 ..\obj\startup_stm32f0xx.o
- .debug_info    0x0000147e      0x33a ..\obj\amiv_flash.o
- .debug_info    0x000017b8      0xbb3 ..\obj\stm32f0xx_i2c.o
- .debug_info    0x0000236b      0x2ef ..\obj\system_stm32f0xx_temp.o
- .debug_info    0x0000265a      0x592 ..\obj\amiv_irq.o
- .debug_info    0x00002bec      0x5cf ..\obj\stm32f0xx_gpio.o
- .debug_info    0x000031bb      0x11d ..\obj\amiv_ad9984a.o
- .debug_info    0x000032d8      0x1fe ..\obj\amiv_adv7511.o
- .debug_info    0x000034d6      0xe2e ..\obj\stm32f0xx_usart.o
- .debug_info    0x00004304      0x36b ..\obj\amiv_i2c.o
- .debug_info    0x0000466f      0x212 ..\obj\amiv_fpga.o
- .debug_info    0x00004881      0x725 ..\obj\amiv_button.o
- .debug_info    0x00004fa6      0x78a ..\obj\stm32f0xx_flash.o
- .debug_info    0x00005730      0x30d ..\obj\stm32f0xx_exti.o
- .debug_info    0x00005a3d      0x2a7 ..\obj\stm32f0xx_syscfg.o
- .debug_info    0x00005ce4      0x28e ..\obj\amiv_util.o
- .debug_info    0x00005f72      0x325 ..\obj\amiv_config.o
- .debug_info    0x00006297      0x36a ..\obj\stm32f0xx_misc.o
+ .debug_info    0x0000030a      0x410 ..\obj\amiv_main.o
+ .debug_info    0x0000071a      0x9b8 ..\obj\stm32f0xx_rcc.o
+ .debug_info    0x000010d2      0x417 ..\obj\amiv_cmd.o
+ .debug_info    0x000014e9       0x80 ..\obj\startup_stm32f0xx.o
+ .debug_info    0x00001569      0x33a ..\obj\amiv_flash.o
+ .debug_info    0x000018a3      0xbb3 ..\obj\stm32f0xx_i2c.o
+ .debug_info    0x00002456      0x2ef ..\obj\system_stm32f0xx_temp.o
+ .debug_info    0x00002745      0x592 ..\obj\amiv_irq.o
+ .debug_info    0x00002cd7      0x5cf ..\obj\stm32f0xx_gpio.o
+ .debug_info    0x000032a6      0x11d ..\obj\amiv_ad9984a.o
+ .debug_info    0x000033c3      0x1a0 ..\obj\amiv_adv7511.o
+ .debug_info    0x00003563      0xe2e ..\obj\stm32f0xx_usart.o
+ .debug_info    0x00004391      0x36b ..\obj\amiv_i2c.o
+ .debug_info    0x000046fc      0x212 ..\obj\amiv_fpga.o
+ .debug_info    0x0000490e      0x759 ..\obj\amiv_button.o
+ .debug_info    0x00005067      0x78a ..\obj\stm32f0xx_flash.o
+ .debug_info    0x000057f1      0x30d ..\obj\stm32f0xx_exti.o
+ .debug_info    0x00005afe      0x2a7 ..\obj\stm32f0xx_syscfg.o
+ .debug_info    0x00005da5      0x28e ..\obj\amiv_util.o
+ .debug_info    0x00006033      0x33b ..\obj\amiv_config.o
+ .debug_info    0x0000636e      0x36a ..\obj\stm32f0xx_misc.o
 
-.debug_abbrev   0x00000000     0x1c73
+.debug_abbrev   0x00000000     0x1c94
  .debug_abbrev  0x00000000      0x145 ..\obj\amiv_uart.o
- .debug_abbrev  0x00000145       0xdd ..\obj\amiv_main.o
- .debug_abbrev  0x00000222      0x1ec ..\obj\stm32f0xx_rcc.o
- .debug_abbrev  0x0000040e      0x168 ..\obj\amiv_cmd.o
- .debug_abbrev  0x00000576       0x12 ..\obj\startup_stm32f0xx.o
- .debug_abbrev  0x00000588      0x170 ..\obj\amiv_flash.o
- .debug_abbrev  0x000006f8      0x185 ..\obj\stm32f0xx_i2c.o
- .debug_abbrev  0x0000087d      0x134 ..\obj\system_stm32f0xx_temp.o
- .debug_abbrev  0x000009b1      0x176 ..\obj\amiv_irq.o
- .debug_abbrev  0x00000b27      0x19b ..\obj\stm32f0xx_gpio.o
- .debug_abbrev  0x00000cc2       0xb6 ..\obj\amiv_ad9984a.o
- .debug_abbrev  0x00000d78      0x116 ..\obj\amiv_adv7511.o
- .debug_abbrev  0x00000e8e      0x15c ..\obj\stm32f0xx_usart.o
- .debug_abbrev  0x00000fea      0x1b1 ..\obj\amiv_i2c.o
- .debug_abbrev  0x0000119b       0xc3 ..\obj\amiv_fpga.o
- .debug_abbrev  0x0000125e      0x244 ..\obj\amiv_button.o
- .debug_abbrev  0x000014a2      0x1d7 ..\obj\stm32f0xx_flash.o
- .debug_abbrev  0x00001679      0x192 ..\obj\stm32f0xx_exti.o
- .debug_abbrev  0x0000180b      0x147 ..\obj\stm32f0xx_syscfg.o
- .debug_abbrev  0x00001952       0xd1 ..\obj\amiv_util.o
- .debug_abbrev  0x00001a23      0x10d ..\obj\amiv_config.o
- .debug_abbrev  0x00001b30      0x143 ..\obj\stm32f0xx_misc.o
+ .debug_abbrev  0x00000145      0x10f ..\obj\amiv_main.o
+ .debug_abbrev  0x00000254      0x1ec ..\obj\stm32f0xx_rcc.o
+ .debug_abbrev  0x00000440      0x168 ..\obj\amiv_cmd.o
+ .debug_abbrev  0x000005a8       0x12 ..\obj\startup_stm32f0xx.o
+ .debug_abbrev  0x000005ba      0x170 ..\obj\amiv_flash.o
+ .debug_abbrev  0x0000072a      0x185 ..\obj\stm32f0xx_i2c.o
+ .debug_abbrev  0x000008af      0x134 ..\obj\system_stm32f0xx_temp.o
+ .debug_abbrev  0x000009e3      0x176 ..\obj\amiv_irq.o
+ .debug_abbrev  0x00000b59      0x19b ..\obj\stm32f0xx_gpio.o
+ .debug_abbrev  0x00000cf4       0xb6 ..\obj\amiv_ad9984a.o
+ .debug_abbrev  0x00000daa       0xed ..\obj\amiv_adv7511.o
+ .debug_abbrev  0x00000e97      0x15c ..\obj\stm32f0xx_usart.o
+ .debug_abbrev  0x00000ff3      0x1b1 ..\obj\amiv_i2c.o
+ .debug_abbrev  0x000011a4       0xc3 ..\obj\amiv_fpga.o
+ .debug_abbrev  0x00001267      0x24f ..\obj\amiv_button.o
+ .debug_abbrev  0x000014b6      0x1d7 ..\obj\stm32f0xx_flash.o
+ .debug_abbrev  0x0000168d      0x192 ..\obj\stm32f0xx_exti.o
+ .debug_abbrev  0x0000181f      0x147 ..\obj\stm32f0xx_syscfg.o
+ .debug_abbrev  0x00001966       0xd1 ..\obj\amiv_util.o
+ .debug_abbrev  0x00001a37      0x11a ..\obj\amiv_config.o
+ .debug_abbrev  0x00001b51      0x143 ..\obj\stm32f0xx_misc.o
 
-.debug_aranges  0x00000000      0xa60
+.debug_aranges  0x00000000      0xa50
  .debug_aranges
                 0x00000000       0x40 ..\obj\amiv_uart.o
  .debug_aranges
@@ -1008,29 +1005,29 @@ OUTPUT(amiv.elf elf32-littlearm)
  .debug_aranges
                 0x000004c8       0x28 ..\obj\amiv_ad9984a.o
  .debug_aranges
-                0x000004f0       0x48 ..\obj\amiv_adv7511.o
+                0x000004f0       0x38 ..\obj\amiv_adv7511.o
  .debug_aranges
-                0x00000538      0x1a0 ..\obj\stm32f0xx_usart.o
+                0x00000528      0x1a0 ..\obj\stm32f0xx_usart.o
  .debug_aranges
-                0x000006d8       0x50 ..\obj\amiv_i2c.o
+                0x000006c8       0x50 ..\obj\amiv_i2c.o
  .debug_aranges
-                0x00000728       0x50 ..\obj\amiv_fpga.o
+                0x00000718       0x50 ..\obj\amiv_fpga.o
  .debug_aranges
-                0x00000778       0x80 ..\obj\amiv_button.o
+                0x00000768       0x80 ..\obj\amiv_button.o
  .debug_aranges
-                0x000007f8      0x100 ..\obj\stm32f0xx_flash.o
+                0x000007e8      0x100 ..\obj\stm32f0xx_flash.o
  .debug_aranges
-                0x000008f8       0x58 ..\obj\stm32f0xx_exti.o
+                0x000008e8       0x58 ..\obj\stm32f0xx_exti.o
  .debug_aranges
-                0x00000950       0x58 ..\obj\stm32f0xx_syscfg.o
+                0x00000940       0x58 ..\obj\stm32f0xx_syscfg.o
  .debug_aranges
-                0x000009a8       0x48 ..\obj\amiv_util.o
+                0x00000998       0x48 ..\obj\amiv_util.o
  .debug_aranges
-                0x000009f0       0x40 ..\obj\amiv_config.o
+                0x000009e0       0x40 ..\obj\amiv_config.o
  .debug_aranges
-                0x00000a30       0x30 ..\obj\stm32f0xx_misc.o
+                0x00000a20       0x30 ..\obj\stm32f0xx_misc.o
 
-.debug_ranges   0x00000000      0x908
+.debug_ranges   0x00000000      0x8f8
  .debug_ranges  0x00000000       0x30 ..\obj\amiv_uart.o
  .debug_ranges  0x00000030       0x10 ..\obj\amiv_main.o
  .debug_ranges  0x00000040      0x140 ..\obj\stm32f0xx_rcc.o
@@ -1042,84 +1039,84 @@ OUTPUT(amiv.elf elf32-littlearm)
  .debug_ranges  0x00000398       0x28 ..\obj\amiv_irq.o
  .debug_ranges  0x000003c0       0x70 ..\obj\stm32f0xx_gpio.o
  .debug_ranges  0x00000430       0x18 ..\obj\amiv_ad9984a.o
- .debug_ranges  0x00000448       0x38 ..\obj\amiv_adv7511.o
- .debug_ranges  0x00000480      0x190 ..\obj\stm32f0xx_usart.o
- .debug_ranges  0x00000610       0x40 ..\obj\amiv_i2c.o
- .debug_ranges  0x00000650       0x40 ..\obj\amiv_fpga.o
- .debug_ranges  0x00000690       0x70 ..\obj\amiv_button.o
- .debug_ranges  0x00000700       0xf0 ..\obj\stm32f0xx_flash.o
- .debug_ranges  0x000007f0       0x48 ..\obj\stm32f0xx_exti.o
- .debug_ranges  0x00000838       0x48 ..\obj\stm32f0xx_syscfg.o
- .debug_ranges  0x00000880       0x38 ..\obj\amiv_util.o
- .debug_ranges  0x000008b8       0x30 ..\obj\amiv_config.o
- .debug_ranges  0x000008e8       0x20 ..\obj\stm32f0xx_misc.o
+ .debug_ranges  0x00000448       0x28 ..\obj\amiv_adv7511.o
+ .debug_ranges  0x00000470      0x190 ..\obj\stm32f0xx_usart.o
+ .debug_ranges  0x00000600       0x40 ..\obj\amiv_i2c.o
+ .debug_ranges  0x00000640       0x40 ..\obj\amiv_fpga.o
+ .debug_ranges  0x00000680       0x70 ..\obj\amiv_button.o
+ .debug_ranges  0x000006f0       0xf0 ..\obj\stm32f0xx_flash.o
+ .debug_ranges  0x000007e0       0x48 ..\obj\stm32f0xx_exti.o
+ .debug_ranges  0x00000828       0x48 ..\obj\stm32f0xx_syscfg.o
+ .debug_ranges  0x00000870       0x38 ..\obj\amiv_util.o
+ .debug_ranges  0x000008a8       0x30 ..\obj\amiv_config.o
+ .debug_ranges  0x000008d8       0x20 ..\obj\stm32f0xx_misc.o
 
-.debug_line     0x00000000     0x39d7
+.debug_line     0x00000000     0x39c1
  .debug_line    0x00000000      0x1e1 ..\obj\amiv_uart.o
- .debug_line    0x000001e1      0x21c ..\obj\amiv_main.o
- .debug_line    0x000003fd      0x4d7 ..\obj\stm32f0xx_rcc.o
- .debug_line    0x000008d4      0x2bb ..\obj\amiv_cmd.o
- .debug_line    0x00000b8f       0x9b ..\obj\startup_stm32f0xx.o
- .debug_line    0x00000c2a      0x264 ..\obj\amiv_flash.o
- .debug_line    0x00000e8e      0x4fc ..\obj\stm32f0xx_i2c.o
- .debug_line    0x0000138a      0x1a9 ..\obj\system_stm32f0xx_temp.o
- .debug_line    0x00001533      0x249 ..\obj\amiv_irq.o
- .debug_line    0x0000177c      0x2ae ..\obj\stm32f0xx_gpio.o
- .debug_line    0x00001a2a      0x184 ..\obj\amiv_ad9984a.o
- .debug_line    0x00001bae      0x1d9 ..\obj\amiv_adv7511.o
- .debug_line    0x00001d87      0x599 ..\obj\stm32f0xx_usart.o
- .debug_line    0x00002320      0x25c ..\obj\amiv_i2c.o
- .debug_line    0x0000257c      0x1e6 ..\obj\amiv_fpga.o
- .debug_line    0x00002762      0x45d ..\obj\amiv_button.o
- .debug_line    0x00002bbf      0x444 ..\obj\stm32f0xx_flash.o
- .debug_line    0x00003003      0x229 ..\obj\stm32f0xx_exti.o
- .debug_line    0x0000322c      0x1ed ..\obj\stm32f0xx_syscfg.o
- .debug_line    0x00003419      0x1f0 ..\obj\amiv_util.o
- .debug_line    0x00003609      0x1e6 ..\obj\amiv_config.o
- .debug_line    0x000037ef      0x1e8 ..\obj\stm32f0xx_misc.o
+ .debug_line    0x000001e1      0x21b ..\obj\amiv_main.o
+ .debug_line    0x000003fc      0x4d7 ..\obj\stm32f0xx_rcc.o
+ .debug_line    0x000008d3      0x2bb ..\obj\amiv_cmd.o
+ .debug_line    0x00000b8e       0x9b ..\obj\startup_stm32f0xx.o
+ .debug_line    0x00000c29      0x264 ..\obj\amiv_flash.o
+ .debug_line    0x00000e8d      0x4fc ..\obj\stm32f0xx_i2c.o
+ .debug_line    0x00001389      0x1a9 ..\obj\system_stm32f0xx_temp.o
+ .debug_line    0x00001532      0x23b ..\obj\amiv_irq.o
+ .debug_line    0x0000176d      0x2ae ..\obj\stm32f0xx_gpio.o
+ .debug_line    0x00001a1b      0x184 ..\obj\amiv_ad9984a.o
+ .debug_line    0x00001b9f      0x1b1 ..\obj\amiv_adv7511.o
+ .debug_line    0x00001d50      0x599 ..\obj\stm32f0xx_usart.o
+ .debug_line    0x000022e9      0x25c ..\obj\amiv_i2c.o
+ .debug_line    0x00002545      0x1e7 ..\obj\amiv_fpga.o
+ .debug_line    0x0000272c      0x47b ..\obj\amiv_button.o
+ .debug_line    0x00002ba7      0x444 ..\obj\stm32f0xx_flash.o
+ .debug_line    0x00002feb      0x229 ..\obj\stm32f0xx_exti.o
+ .debug_line    0x00003214      0x1ed ..\obj\stm32f0xx_syscfg.o
+ .debug_line    0x00003401      0x1f0 ..\obj\amiv_util.o
+ .debug_line    0x000035f1      0x1e8 ..\obj\amiv_config.o
+ .debug_line    0x000037d9      0x1e8 ..\obj\stm32f0xx_misc.o
 
-.debug_str      0x00000000     0x2a7a
+.debug_str      0x00000000     0x2a43
  .debug_str     0x00000000      0x29d ..\obj\amiv_uart.o
                                 0x2ff (size before relaxing)
- .debug_str     0x0000029d      0x21c ..\obj\amiv_main.o
-                                0x3aa (size before relaxing)
- .debug_str     0x000004b9      0x57f ..\obj\stm32f0xx_rcc.o
+ .debug_str     0x0000029d      0x258 ..\obj\amiv_main.o
+                                0x409 (size before relaxing)
+ .debug_str     0x000004f5      0x57f ..\obj\stm32f0xx_rcc.o
                                 0x71c (size before relaxing)
- .debug_str     0x00000a38       0xc9 ..\obj\amiv_cmd.o
+ .debug_str     0x00000a74       0xbf ..\obj\amiv_cmd.o
                                 0x2d3 (size before relaxing)
- .debug_str     0x00000b01      0x17c ..\obj\amiv_flash.o
+ .debug_str     0x00000b33      0x17c ..\obj\amiv_flash.o
                                 0x312 (size before relaxing)
- .debug_str     0x00000c7d      0x474 ..\obj\stm32f0xx_i2c.o
+ .debug_str     0x00000caf      0x474 ..\obj\stm32f0xx_i2c.o
                                 0x620 (size before relaxing)
- .debug_str     0x000010f1       0x9a ..\obj\system_stm32f0xx_temp.o
+ .debug_str     0x00001123       0x9a ..\obj\system_stm32f0xx_temp.o
                                 0x282 (size before relaxing)
- .debug_str     0x0000118b      0x4a7 ..\obj\amiv_irq.o
+ .debug_str     0x000011bd      0x475 ..\obj\amiv_irq.o
                                 0x6f7 (size before relaxing)
  .debug_str     0x00001632      0x175 ..\obj\stm32f0xx_gpio.o
                                 0x472 (size before relaxing)
  .debug_str     0x000017a7       0x5a ..\obj\amiv_ad9984a.o
                                 0x203 (size before relaxing)
- .debug_str     0x00001801       0xd1 ..\obj\amiv_adv7511.o
-                                0x2bd (size before relaxing)
- .debug_str     0x000018d2      0x652 ..\obj\stm32f0xx_usart.o
+ .debug_str     0x00001801       0x9a ..\obj\amiv_adv7511.o
+                                0x25e (size before relaxing)
+ .debug_str     0x0000189b      0x652 ..\obj\stm32f0xx_usart.o
                                 0x939 (size before relaxing)
- .debug_str     0x00001f24       0xe2 ..\obj\amiv_i2c.o
+ .debug_str     0x00001eed       0xe2 ..\obj\amiv_i2c.o
                                 0x357 (size before relaxing)
- .debug_str     0x00002006       0xa1 ..\obj\amiv_fpga.o
+ .debug_str     0x00001fcf       0xa1 ..\obj\amiv_fpga.o
                                 0x24e (size before relaxing)
- .debug_str     0x000020a7      0x24e ..\obj\amiv_button.o
+ .debug_str     0x00002070      0x24e ..\obj\amiv_button.o
                                 0x668 (size before relaxing)
- .debug_str     0x000022f5      0x327 ..\obj\stm32f0xx_flash.o
+ .debug_str     0x000022be      0x327 ..\obj\stm32f0xx_flash.o
                                 0x55e (size before relaxing)
- .debug_str     0x0000261c       0xe8 ..\obj\stm32f0xx_exti.o
+ .debug_str     0x000025e5       0xe8 ..\obj\stm32f0xx_exti.o
                                 0x315 (size before relaxing)
- .debug_str     0x00002704      0x180 ..\obj\stm32f0xx_syscfg.o
+ .debug_str     0x000026cd      0x180 ..\obj\stm32f0xx_syscfg.o
                                 0x301 (size before relaxing)
- .debug_str     0x00002884       0x9b ..\obj\amiv_util.o
+ .debug_str     0x0000284d       0x9b ..\obj\amiv_util.o
                                 0x1f9 (size before relaxing)
- .debug_str     0x0000291f       0x74 ..\obj\amiv_config.o
-                                0x387 (size before relaxing)
- .debug_str     0x00002993       0xe7 ..\obj\stm32f0xx_misc.o
+ .debug_str     0x000028e8       0x74 ..\obj\amiv_config.o
+                                0x396 (size before relaxing)
+ .debug_str     0x0000295c       0xe7 ..\obj\stm32f0xx_misc.o
                                 0x2dc (size before relaxing)
 
 .comment        0x00000000       0x70
@@ -1201,7 +1198,7 @@ OUTPUT(amiv.elf elf32-littlearm)
  .ARM.attributes
                 0x00000480       0x2c c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg.a(lib_a-memcpy-stub.o)
 
-.debug_frame    0x00000000     0x2230
+.debug_frame    0x00000000     0x21f0
  .debug_frame   0x00000000       0xa8 ..\obj\amiv_uart.o
  .debug_frame   0x000000a8       0x30 ..\obj\amiv_main.o
  .debug_frame   0x000000d8      0x4e4 ..\obj\stm32f0xx_rcc.o
@@ -1212,17 +1209,17 @@ OUTPUT(amiv.elf elf32-littlearm)
  .debug_frame   0x00000d4c       0x90 ..\obj\amiv_irq.o
  .debug_frame   0x00000ddc      0x1b0 ..\obj\stm32f0xx_gpio.o
  .debug_frame   0x00000f8c       0x4c ..\obj\amiv_ad9984a.o
- .debug_frame   0x00000fd8       0xc4 ..\obj\amiv_adv7511.o
- .debug_frame   0x0000109c      0x630 ..\obj\stm32f0xx_usart.o
- .debug_frame   0x000016cc       0xec ..\obj\amiv_i2c.o
- .debug_frame   0x000017b8       0xd8 ..\obj\amiv_fpga.o
- .debug_frame   0x00001890      0x194 ..\obj\amiv_button.o
- .debug_frame   0x00001a24      0x394 ..\obj\stm32f0xx_flash.o
- .debug_frame   0x00001db8      0x10c ..\obj\stm32f0xx_exti.o
- .debug_frame   0x00001ec4      0x110 ..\obj\stm32f0xx_syscfg.o
- .debug_frame   0x00001fd4       0xd0 ..\obj\amiv_util.o
- .debug_frame   0x000020a4       0xac ..\obj\amiv_config.o
- .debug_frame   0x00002150       0x70 ..\obj\stm32f0xx_misc.o
- .debug_frame   0x000021c0       0x20 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_udivsi3.o)
- .debug_frame   0x000021e0       0x20 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_divsi3.o)
- .debug_frame   0x00002200       0x30 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x00000fd8       0x84 ..\obj\amiv_adv7511.o
+ .debug_frame   0x0000105c      0x630 ..\obj\stm32f0xx_usart.o
+ .debug_frame   0x0000168c       0xec ..\obj\amiv_i2c.o
+ .debug_frame   0x00001778       0xd8 ..\obj\amiv_fpga.o
+ .debug_frame   0x00001850      0x194 ..\obj\amiv_button.o
+ .debug_frame   0x000019e4      0x394 ..\obj\stm32f0xx_flash.o
+ .debug_frame   0x00001d78      0x10c ..\obj\stm32f0xx_exti.o
+ .debug_frame   0x00001e84      0x110 ..\obj\stm32f0xx_syscfg.o
+ .debug_frame   0x00001f94       0xd0 ..\obj\amiv_util.o
+ .debug_frame   0x00002064       0xac ..\obj\amiv_config.o
+ .debug_frame   0x00002110       0x70 ..\obj\stm32f0xx_misc.o
+ .debug_frame   0x00002180       0x20 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_udivsi3.o)
+ .debug_frame   0x000021a0       0x20 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m\libgcc.a(_divsi3.o)
+ .debug_frame   0x000021c0       0x30 c:/program files (x86)/gnu tools arm embedded/4.8 2014q3/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m\libg.a(lib_a-memcpy-stub.o)

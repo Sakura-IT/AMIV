@@ -11,19 +11,15 @@
 #include "amiv_util.h"
 #include "amiv_fpga.h"
 
-#define POLLING_INTERVAL	200000
-
 int main(void)
 {
 	uint32_t i = 0;
 
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
-
+	AMIV_CONFIG_Init();
 	AMIV_UART_Init();
 	AMIV_UART_SendString("Initiating MCU...\r\n");
 
-	AMIV_CONFIG_Init();
+
 	AMIV_CONFIG_GPIO();
 	AMIV_CONFIG_LED();
 
@@ -32,7 +28,10 @@ int main(void)
 	AMIV_FLASH_Init();
 	AMIV_BUTTON_Init();
 
-	for(i = 0; i < 1000000; i++);
+	/* Deactivate led */
+	GPIO_ResetBits(GPIOA, GPIO_Pin_8);
+
+	for(i = 0; i < MAIN_STARTUP_DELAY; i++);
 
 	AMIV_UART_SendString("Done!\r\n");
 
@@ -139,7 +138,7 @@ int main(void)
 		}
 	}
 
-	/* reset configuration in fpga */
+	/* Reset configuration in fpga */
 	AMIV_FPGA_Reset();
 
 	/* Wait for picture */

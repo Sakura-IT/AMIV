@@ -49,8 +49,6 @@ void AMIV_ADV7511_PowerUp();
 void AMIV_ADV7511_Config();
 void AMIV_ADV7511_ReadEDID();
 uint8_t *AMIV_ADV7511_GetEDIDPointer();
-void AMIV_ADV7511_IncreaseVerticalSize(uint32_t factor);
-void AMIV_ADV7511_DecreaseVerticalSize(uint32_t factor);
 
 static const uint8_t ADV7511_WRRegList[] = {
 		0x15, 0x16, 0x17, 0x18, 0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E,

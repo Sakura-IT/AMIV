@@ -29,7 +29,8 @@ module AMIV_TOP( input wire ref_clock,
 				 input wire gpio_0,
 				 input wire gpio_1,
 				 input wire gpio_2,
-				 input wire gpio_3);
+				 input wire gpio_3,
+				 output wire iled);
 
 localparam IN_FRAME_PER_SECOND = 'd50; /* number of frames used by interlaced detection */
 localparam IN_HORIZONTAL_BLANKING = 'd170;
@@ -116,6 +117,7 @@ reg [2:0] state_next;
 reg reg_reset_screen_pos = 0;
 reg reg_output_active = 0;
 reg reg_output_active_next = 0;
+reg reg_iled = 1;
 
 localparam [2:0] state_0 = 3'b000,
 				 state_1 = 3'b001,
@@ -210,8 +212,10 @@ begin
 		reg_interlaced_active_counter_next = IN_FRAME_PER_SECOND;
 		if(reg_interlaced_detected == 1'b1) begin
 			reg_interlaced_active_next = 1'b1;
+			reg_iled = 0;
 		end else begin
 			reg_interlaced_active_next = 0;
+			reg_iled = 1;
 		end
 		
 		reg_interlaced_detected_next = 0;
@@ -520,5 +524,6 @@ assign sram_we_n = reg_sram_in_wr_n;
 assign sram_busy_n = reg_sram_out_busy_n;
 assign sram_out_addr = reg_sram_in_addr;
 assign sram_inout_data =  (!sram_we_n) ? reg_sram_in_data : 16'bz;
+assign iled = reg_iled;
 
 endmodule

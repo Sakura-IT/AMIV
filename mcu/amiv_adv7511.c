@@ -95,7 +95,7 @@ void AMIV_ADV7511_ReadEDID()
 	for(i = 0; i < 128; i++)
 	{
 		AMIV_ADV7511_EDID[i] = AMIV_I2C_RD_Reg(i);
-		for(i = 0; i < 10000;i++);
+		for(i = 0; i < MAIN_MEDIUM_DELAY;i++);
 	}
 }
 
@@ -104,25 +104,3 @@ uint8_t *AMIV_ADV7511_GetEDIDPointer()
 	return AMIV_ADV7511_EDID;
 }
 
-void AMIV_ADV7511_IncreaseVerticalSize(uint32_t factor)
-{
-	VerticalSize -= factor;
-	/* Skip MSB register for now */
-	AMIV_I2C_WR_Reg(0x38, VerticalSize & 0xFF);
-}
-
-void AMIV_ADV7511_DecreaseVerticalSize(uint32_t factor)
-{
-	/* Skip MSB register for now */
-
-	if(VerticalSize > (MIN_SIZE & 0xFF))
-	{
-		VerticalSize = 0x0000;
-	}
-	else
-	{
-		VerticalSize += factor;
-	}
-
-	AMIV_I2C_WR_Reg(0x38, VerticalSize & 0xFF);
-}

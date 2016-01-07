@@ -8,10 +8,6 @@
 #include "amiv_uart.h"
 #include "amiv_fpga.h"
 
-#define DEBOUNCE_LIMIT_LONG_PRESS		60000
-#define LONG_PRESS						30000
-#define MIN_VALID_PRESS					3000
-
 #define DEFAULT_CHIP					0x01
 #define DEFAULT_REG_MSB					0x37
 #define DEFAULT_REG_LSB					0x38
@@ -150,6 +146,22 @@ static void ExeciteButtonFunction()
 	case BUTTON_ACTION_RESET:
 		NVIC_SystemReset();
 		break;
+	}
+
+	/* Toggle led */
+	if(GPIO_ReadOutputDataBit(GPIOA, GPIO_Pin_8))
+	{
+		uint32_t i;
+		GPIO_ResetBits(GPIOA, GPIO_Pin_8);
+		for(i = 0; i < BUTTON_LED_DELAY; i++);
+		GPIO_SetBits(GPIOA, GPIO_Pin_8);
+	}
+	else
+	{
+		uint32_t i;
+		GPIO_SetBits(GPIOA, GPIO_Pin_8);
+		for(i = 0; i < BUTTON_LED_DELAY; i++);
+		GPIO_ResetBits(GPIOA, GPIO_Pin_8);
 	}
 }
 
@@ -358,7 +370,7 @@ void AMIV_BUTTON_FSM()
 		break;
 	case BUTTON_STATE_PRESS:
 		gButtonCntPress++;
-		if(gButtonCntPress >= LONG_PRESS)
+		if(gButtonCntPress >= BUTTON_LONG_PRESS)
 		{
 			gButtonState = BUTTON_STATE_LONG_PRESS;
 		}
@@ -375,10 +387,10 @@ void AMIV_BUTTON_FSM()
 			gButtonState = BUTTON_STATE_IDLE;
 			gButtonCntPress = 0;
 		}
-		for(i = 0; i < DEBOUNCE_LIMIT_LONG_PRESS; i++);
+		for(i = 0; i < (BUTTON_DEBOUNCE_LIMIT_LONG_PRESS - BUTTON_LED_DELAY); i++);
 		break;
 	case BUTTON_STATE_RELEASE:
-		if(gButtonCntPress <= MIN_VALID_PRESS)
+		if(gButtonCntPress <= BUTTON_MIN_VALID_PRESS)
 		{
 			gButtonState = BUTTON_STATE_IDLE;
 		}

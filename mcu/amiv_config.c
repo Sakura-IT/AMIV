@@ -4,6 +4,8 @@
 
 void AMIV_CONFIG_Init()
 {
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
 }
 
 void AMIV_CONFIG_I2C()
