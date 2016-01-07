@@ -17,11 +17,13 @@ int main(void)
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
 
+	AMIV_UART_Init();
+	AMIV_UART_SendString("Initiating MCU...\r\n");
+
 	AMIV_CONFIG_Init();
 	AMIV_CONFIG_GPIO();
 	AMIV_CONFIG_LED();
 
-	AMIV_UART_Init();
 	AMIV_I2C_Init();
 	AMIV_IRQ_Init();
 	AMIV_FLASH_Init();
@@ -29,9 +31,35 @@ int main(void)
 
 	for(i = 0; i < 1000000; i++);
 
+	AMIV_UART_SendString("Done!\r\n");
+
+	AMIV_UART_SendString("Initiating devices...\r\n");
 	AMIV_ADV7511_Init();
 	AMIV_AD9984A_Init(ad9984a_mode_amiga);
+	AMIV_UART_SendString("Done!\r\n");
+
+	AMIV_UART_SendString("Powering up devices...\r\n");
 	AMIV_ADV7511_PowerUp();
+	AMIV_UART_SendString("Done!\r\n");
+
+	if(AMIV_BUTTON_CheckSpecialState())
+	{
+		uint8_t Status = 0;
+		AMIV_UART_SendString("Special state detected!\r\n");
+		AMIV_UART_SendString("Resetting to vendor default...\r\n");
+		Status |= AMIV_FLASH_Erase(0);
+		Status |= AMIV_FLASH_Erase(1);
+		Status |= AMIV_FLASH_Erase(2);
+		Status |= AMIV_FLASH_Erase(3);
+		if(Status == 0)
+		{
+			AMIV_UART_SendString("Done!\r\n");
+		}
+		else
+		{
+			AMIV_UART_SendString("Something went wrong!!\r\n");
+		}
+	}
 
 	/* Load configuration from flash if present */
 	if(AMIV_FLASH_GeneralConfigPresent())

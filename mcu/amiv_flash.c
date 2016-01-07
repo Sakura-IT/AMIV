@@ -38,16 +38,16 @@ static uint32_t PageToAddress(uint8_t Page)
 
 	switch(Page)
 	{
-	case 1:
+	case 0:
 		Address = ADDR_FLASH_START;
 		break;
-	case 2:
+	case 1:
 		Address = ADDR_FLASH_START + 0x400;
 		break;
-	case 3:
+	case 2:
 		Address = ADDR_FLASH_START + 0x800;
 		break;
-	case 4:
+	case 3:
 		Address = ADDR_FLASH_START + 0xC00;
 		break;
 	default:
@@ -259,7 +259,7 @@ uint32_t AMIV_FLASH_ReadButtonConfig(uint32_t Offset)
 	return *(__IO uint32_t*)(Offset*4 + PageToAddress(PAGE_BUTTION_CONFIG));
 }
 
-uint8_t AMIV_FLASH_WriteButtonConfig(uint32_t Address, uint32_t Data)
+uint8_t AMIV_FLASH_WriteButtonConfig(uint32_t Offset, uint32_t Data)
 {
 	uint8_t Status = 0;
 
@@ -269,7 +269,7 @@ uint8_t AMIV_FLASH_WriteButtonConfig(uint32_t Address, uint32_t Data)
 	/* Clear pending flags (if any) */
 	FLASH_ClearFlag(FLASH_FLAG_PGERR | FLASH_FLAG_WRPERR | FLASH_FLAG_EOP);
 
-	if(FLASH_ProgramWord((Address*4 + PageToAddress(PAGE_BUTTION_CONFIG)), Data) != FLASH_COMPLETE)
+	if(FLASH_ProgramWord((Offset*4 + PageToAddress(PAGE_BUTTION_CONFIG)), Data) != FLASH_COMPLETE)
 	{
 		/*
 		 * Error occurred while writing data in Flash memory.

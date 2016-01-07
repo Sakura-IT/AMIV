@@ -60,5 +60,7 @@ void AMIV_BUTTON_Init();
 void AMIV_BUTTON_FSM();
 uint8_t AMIV_BUTTON_SaveGeneralConfig();
 void AMIV_BUTTON_ConfigureButton(ButtonConfig_t *ButtonConfig_p, Button_t Button);
+void AMIV_BUTTON_RemoveButtonConfiguration(Button_t Button);
+uint8_t AMIV_BUTTON_CheckSpecialState();
 
 #endif

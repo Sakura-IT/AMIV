@@ -324,6 +324,70 @@ void AMIV_BUTTON_ConfigureButton(ButtonConfig_t *ButtonConfig_p, Button_t Button
 	gButtonConfig[Button] = *ButtonConfig_p;
 }
 
+void AMIV_BUTTON_RemoveButtonConfiguration(Button_t Button)
+{
+	uint32_t buttons[0x100];
+	uint32_t i;
+
+	/* first save all the configuration */
+	for(i = 0; i < 0x100; i++)
+	{
+		buttons[i] = AMIV_FLASH_ReadButtonConfig(i);
+	}
+
+	/* then erase the relevant page in flash */
+	AMIV_FLASH_Erase(PAGE_BUTTION_CONFIG);
+
+	/* then mark the config data for the button as 'removed' */
+	for(i = 0; i < BUTTION_CONFIG_SIZE; i++)
+	{
+		buttons[AddrFlashButtons[Button]] = 0xFFFFFFFF;
+	}
+
+	/* then write back the temporarily stored data */
+	for(i = 0; i < 0x100; i++)
+	{
+		if(buttons[i] != 0xFFFFFFFF)
+		{
+			AMIV_FLASH_WriteButtonConfig(i, buttons[i]);
+		}
+	}
+}
+
+uint8_t AMIV_BUTTON_CheckSpecialState()
+{
+	if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0) == Bit_SET)
+	{
+		return 0;
+	}
+	else if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_1) == Bit_SET)
+	{
+		return 0;
+	}
+	else if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_2) == Bit_SET)
+	{
+		return 0;
+	}
+	else if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_3) == Bit_SET)
+	{
+		return 0;
+	}
+	else if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_6) == Bit_SET)
+	{
+		return 0;
+	}
+	else if(GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_7) == Bit_SET)
+	{
+		return 0;
+	}
+	else if(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_0) == Bit_SET)
+	{
+		return 0;
+	}
+
+	return 1;
+}
+
 void AMIV_BUTTON_FSM()
 {
 	uint32_t i = 0;
